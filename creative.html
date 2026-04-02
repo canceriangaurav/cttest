@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Creative — Where Ideas Take Form | Chronotales</title>
+  <meta name="description" content="Creative at Chronotales is where ideas evolve into powerful brand experiences. From concept to execution, we design with purpose and precision.">
+  <link rel="canonical" href="https://chronotales.org/creative.html">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/creative.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y05SC8PN1Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y05SC8PN1Q');
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Creative Domain at Chronotales",
+    "description": "Discover how Chronotales' Creative domain transforms ideas into impactful brand experiences through design, motion, and content.",
+    "url": "https://chronotales.org/creative.html",
+    "genre": "Branding, Design, Motion Graphics, Content Creation",
+    "keywords": "creative services, branding design, motion graphics, content creation, Chronotales creative domain"
+  }
+  </script>
+
+
+</head>
+
+<body>
+
+<!-- =========================
+   NAV (reuse yours)
+========================= -->
+<!-- 🧭 BREADCRUMB -->
+<div id="breadcrumb" class="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<div class="hidden-breadcrumb" aria-hidden="true" style="display: none;">
+  <span itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="https://chronotales.org/" itemprop="item"><span itemprop="name">Home</span></a>
+      <meta itemprop="position" content="1" />
+    </span> &gt;
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name">About</span>
+      <meta itemprop="position" content="2" />
+    </span>
+  </span>
+</div>
+
+<!-- 🌌 NAV MAP -->
+<div id="nav-map" class="nav-map">
+  <canvas id="galaxy-canvas"></canvas>
+
+  <div class="map-content">
+    <div class="portrait-box">
+
+      <div class="central-logo">
+        <img src="assets/images/logo.png" alt="Chronotales Logo">
+      </div>
+
+      <div class="orbit-container">
+
+        <div class="map-node node-enter" data-link="index.html">
+          <div class="node-glow"></div>
+          <span>Enter the Story</span>
+          <div class="planet-ring"></div>
+        </div>
+
+        <div class="map-node node-about" data-link="about.html">
+          <div class="node-glow"></div>
+          <span>Understand the System</span>
+          <div class="planet-ring"></div>
+        </div>
+
+        <div class="map-node node-domains" data-link="domains.html">
+          <div class="node-glow"></div>
+          <span>Explore the Domains</span>
+          <div class="planet-ring"></div>
+        </div>
+
+        <div class="map-node node-creative active" data-link="creative.html">
+          <div class="node-glow"></div>
+          <span>Creative Domain</span>
+          <div class="planet-ring"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================
+   WRAPPER
+========================= -->
+<canvas id="creative-bg"></canvas>
+<main id="creative-wrapper">
+
+  <!-- SCENE 1 -->
+  <section class="scene active" id="scene-1">
+    <div class="entry-text">
+      <h1 class="entry-line">IDEAS DON’T START PERFECT</h1>
+      <h1 class="entry-line">THEY COLLIDE</h1>
+      <h1 class="entry-line">THEY EVOLVE</h1>
+      <h1 class="entry-line highlight">THIS IS CREATIVE</h1>
+    </div>
+  </section>
+
+  <!-- SCENE 2 -->
+  <section class="scene" id="scene-2">
+    <div class="philo-text">
+      <h2>Creative is not decoration.</h2>
+      <p>
+        It’s translation.<br><br>
+        From thought → form<br>
+        From vision → experience<br>
+        From brand → perception
+      </p>
+    </div>
+    <div class="morph-blob"></div>
+  </section>
+
+  <!-- SCENE 3 -->
+  <section class="scene" id="scene-3">
+    <div class="cap-grid">
+      <div class="cap-card">Branding</div>
+      <div class="cap-card">UI/UX</div>
+      <div class="cap-card">Motion</div>
+      <div class="cap-card">Visual Systems</div>
+      <div class="cap-card">Content Design</div>
+    </div>
+  </section>
+
+  <!-- SCENE 4 -->
+  <section class="scene" id="scene-4">
+    <div class="process-line">
+      <span>Discover</span>
+      <span>Distill</span>
+      <span>Design</span>
+      <span>Refine</span>
+      <span>Amplify</span>
+    </div>
+  </section>
+
+  <!-- SCENE 5 -->
+  <section class="scene" id="scene-5">
+    <div class="work-item">Project One</div>
+    <div class="work-item">Project Two</div>
+    <div class="work-item">Project Three</div>
+  </section>
+
+  <!-- SCENE 6 -->
+  <section class="scene" id="scene-6">
+    <h2>THIS IS ONE DOMAIN</h2>
+    <p>THE SYSTEM GOES DEEPER</p>
+
+    <div class="cta-row">
+      <a href="digital.html">Digital</a>
+      <a href="physical.html">Physical</a>
+      <a href="strategic.html">Strategic</a>
+    </div>
+  </section>
+
+  <!-- SCENE 7 (FINAL EXPERIENCE) -->
+  <section class="scene" id="scene-7">
+    <h2>ENTER THE SYSTEM</h2>
+
+    <div class="explore-grid">
+    
+      <div class="explore-card" data-link="strategic.html">STRATEGIC</div>
+      <div class="explore-card" data-link="digital.html">DIGITAL</div>
+      <div class="explore-card" data-link="physical.html">PHYSICAL</div>
+    </div>
+  </section>
+
+  <section class="scene" id="scene-8">
+
+  <div class="footer-wrap">
+    <p class="footer-line">Chronotales</p>
+    <p class="footer-sub">Where Ideas Take Form</p>
+
+    <div class="footer-divider"></div>
+
+    <p class="footer-copy">
+      © <span id="currentYear"></span> All Rights Reserved
+    </p>
+  </div>
+ 
+
+</section>
+
+</main>
+
+
+<!-- =========================
+   PAGE SCRIPT
+========================= -->
+<script type="module" src="js/creative-main.js"></script>
+
+ <script>
+  document.getElementById("currentYear").innerText = new Date().getFullYear();
+</script>
+
+</body>
+</html>

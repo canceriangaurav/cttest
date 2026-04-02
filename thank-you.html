@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | Chronotales</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: radial-gradient(circle at 20% 30%, #0a070c, #020103);
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 600px;
+    }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 10vw, 80px);
+      margin-bottom: 1rem;
+      color: #ffdf7e;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: rgba(20,15,28,0.7);
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.6);
+      color: #ffdf7e;
+      font-size: 1.4rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .social-icon:hover {
+      background: rgba(212,175,55,0.2);
+      border-color: #ffdf7e;
+      transform: translateY(-3px);
+    }
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffdf7e, #d4af37);
+      color: #0a050f;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(212,175,55,0.5);
+    }
+    .contact-link {
+      color: #ffdf7e;
+      text-decoration: none;
+      border-bottom: 1px solid #ffdf7e;
+    }
+    .contact-link:hover {
+      color: #fff;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="hidden-breadcrumb" aria-hidden="true" style="display: none;">
+  <span itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="https://chronotales.org/" itemprop="item"><span itemprop="name">Home</span></a>
+      <meta itemprop="position" content="1" />
+    </span> &gt;
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name">Thank You</span>
+      <meta itemprop="position" content="2" />
+    </span>
+  </span>
+</div>
+  <div class="container">
+    <h1>Thank You!</h1>
+    <p>Your message has been sent.<br>We’ll get back to you within 24 hours.</p>
+
+    <div class="social-links">
+      <a href="https://www.facebook.com/chronotalespvtltd/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/chronotalesindia/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/company/chronotales/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.youtube.com/@chronotalespvtltd" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <p>Connect with us on social media, or <br><a href="mailto:hello@chronotales.org" class="contact-link">email us directly</a>.</p>
+
+    <a href="/" class="btn">← Return to Chronotales</a>
+
+    <footer>Chronotales – Simplify. Amplify. Transcend.</footer>
+  </div>
+</body>
+</html>

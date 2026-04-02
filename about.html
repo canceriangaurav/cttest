@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Chronotales – The Story of Unified Branding</title>
+  <meta name="description" content="Chronotales was built to fix the broken vendor process. One team, one vision, seamless storytelling.">
+  <link rel="canonical" href="https://chronotales.org/about.html">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700&display=swap" rel="stylesheet">
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <!-- Page‑specific styles -->
+  <link rel="stylesheet" href="css/about.css">
+
+  <!-- Google Analytics (optional) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y05SC8PN1Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y05SC8PN1Q');
+  </script>
+</head>
+<body>
+  <!-- 🧭 BREADCRUMB -->
+<div id="breadcrumb" class="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<div class="hidden-breadcrumb" aria-hidden="true" style="display: none;">
+  <span itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="https://chronotales.org/" itemprop="item"><span itemprop="name">Home</span></a>
+      <meta itemprop="position" content="1" />
+    </span> &gt;
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name">About</span>
+      <meta itemprop="position" content="2" />
+    </span>
+  </span>
+</div>
+
+<!-- 🌌 NAV MAP -->
+<div id="nav-map" class="nav-map">
+  <canvas id="galaxy-canvas"></canvas>
+  <div class="map-content">
+    <div class="portrait-box">
+      <div class="central-logo">
+        <img src="assets/images/logo.png" alt="Chronotales Logo">
+      </div>
+      <div class="orbit-container">
+        <div class="map-node node-enter" data-link="index.html">
+          <div class="node-glow"></div>
+          <span>Enter the Story</span>
+          <div class="planet-ring"></div>
+        </div>
+        <div class="map-node node-about active" data-link="about.html">
+          <div class="node-glow"></div>
+          <span>Understand the System</span>
+          <div class="planet-ring"></div>
+        </div>
+        <div class="map-node node-domains" data-link="domains.html">
+          <div class="node-glow"></div>
+          <span>Explore the Domains</span>
+          <div class="planet-ring"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <canvas id="stars"></canvas>
+
+  <!-- Sound Consent Modal -->
+  <div id="soundConsentModal" class="sound-modal" style="display: none;">
+    <div class="sound-modal-content">
+      <h2>🎧 Enhance Your Experience</h2>
+      <p>Would you like to enable immersive sound effects for this website?</p>
+      <div class="sound-modal-buttons">
+        <button id="enableSoundBtn" class="sound-btn yes">Yes, Enable Sound</button>
+        <button id="disableSoundBtn" class="sound-btn no">No, Keep Muted</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="about-narrative">
+    <!-- Act 1: Void -->
+    <section class="act act-void">
+      <div class="act-content">
+        <h1 class="hero-line">Every story…</h1>
+        <h2 class="hero-line">starts from nothing.</h2>
+        <p class="hero-sub">No form. No direction. Just possibility.</p>
+      </div>
+    </section>
+
+    <!-- Act 2: Ignition -->
+    <section class="act act-ignition">
+      <div class="act-content">
+        <h2 class="hero-line">Then—</h2>
+        <h2 class="hero-line">a thought appears.</h2>
+        <p class="hero-sub">Small. Uncertain.</p>
+      </div>
+    </section>
+
+    <!-- Act 3: Chaos -->
+    <section class="act act-chaos">
+      <div class="act-content">
+        <h2>It doesn’t arrive perfect.</h2>
+        <h2>It breaks.</h2>
+        <h2>It scatters.</h2>
+        <h2>It becomes chaos.</h2>
+      </div>
+    </section>
+
+    <!-- Act 4: Reality -->
+    <section class="act act-reality">
+      <div class="act-content">
+        <h2>But in reality—</h2>
+        <h2>most stories don’t flow like this.</h2>
+        <h2>They get passed around.</h2>
+        <h2>From one vendor… to another.</h2>
+        <h2 class="emphasis">Costs rise. Consistency disappears.</h2>
+      </div>
+    </section>
+
+    <!-- Act 5: Solution -->
+    <section class="act act-solution">
+      <div class="act-content">
+        <h2>That’s why Chronotales exists.</h2>
+        <h2>One vision.</h2>
+        <h2>Seamless execution.</h2>
+      </div>
+    </section>
+
+    <!-- Act 6: Founder -->
+    <section class="act act-founder">
+      <div class="act-content">
+        <div class="founder-wrap">
+          <div class="founder-image">
+            <img src="assets/images/gaurav.png" alt="Gaurav Chauhan">
+          </div>
+          <p class="small">A message from the creator</p>
+          <p class="quote">“Chronotales was built to simplify creation—<br>and bring consistency back into storytelling.”</p>
+          <p class="signature">— Gaurav Chauhan</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Act 7: CTA -->
+    <section class="act act-cta">
+      <div class="act-content">
+        <h2>Build something seamless.</h2>
+        <button id="startStoryBtn" class="cta-button">Start Your Story →</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Creative Form (multi-step) -->
+ <section id="creativeForm" class="form-section">
+  <div class="form-container">
+    <!-- Step 1: Name -->
+    <div class="form-step active" data-step="1">
+      <h3>Let’s begin.</h3>
+      <p>What should we call you?</p>
+      <div class="input-group">
+        <input type="text" id="formName" placeholder="Your name" required>
+        <span class="focus-border"></span>
+      </div>
+      <button class="next-step">Next →</button>
+    </div>
+
+    <!-- Step 2: Email -->
+    <div class="form-step" data-step="2">
+      <h3>Your email address</h3>
+      <p>Where can we reach you?</p>
+      <div class="input-group">
+        <input type="email" id="formEmail" placeholder="hello@company.com" required>
+        <span class="focus-border"></span>
+      </div>
+      <button class="next-step">Next →</button>
+      <button class="prev-step">← Back</button>
+    </div>
+
+    <!-- Step 3: Phone -->
+    <div class="form-step" data-step="3">
+      <h3>Phone number</h3>
+      <p>So we can connect quickly</p>
+      <div class="input-group">
+        <input type="tel" id="formPhone" placeholder="+91 98765 43210" required>
+        <span class="focus-border"></span>
+      </div>
+      <button class="next-step">Next →</button>
+      <button class="prev-step">← Back</button>
+    </div>
+
+    <!-- Step 4: Brand -->
+    <div class="form-step" data-step="4">
+      <h3>And your brand?</h3>
+      <div class="input-group">
+        <input type="text" id="formBrand" placeholder="Company / Project name" required>
+        <span class="focus-border"></span>
+      </div>
+      <button class="next-step">Next →</button>
+      <button class="prev-step">← Back</button>
+    </div>
+
+    <!-- Step 5: Problem -->
+    <div class="form-step" data-step="5">
+      <h3>What’s breaking your flow?</h3>
+      <div class="options-grid">
+        <button class="problem-option" data-problem="Too many vendors">Too many vendors</button>
+        <button class="problem-option" data-problem="Rising costs">Rising costs</button>
+        <button class="problem-option" data-problem="Inconsistent branding">Inconsistent branding</button>
+        <button class="problem-option" data-problem="No clear direction">No clear direction</button>
+      </div>
+      <input type="hidden" id="formProblem" value="">
+      <button class="next-step disabled" disabled>Next →</button>
+      <button class="prev-step">← Back</button>
+    </div>
+
+    <!-- Step 6: Project type -->
+    <div class="form-step" data-step="6">
+      <h3>What are we creating?</h3>
+      <div class="options-grid">
+        <button class="project-option" data-project="Brand Film">Brand Film</button>
+        <button class="project-option" data-project="Motion Graphics">Motion Graphics</button>
+        <button class="project-option" data-project="Social Content">Social Content</button>
+        <button class="project-option" data-project="Something Unique">Something Unique</button>
+      </div>
+      <input type="hidden" id="formProject" value="">
+      <button class="next-step disabled" disabled>Next →</button>
+      <button class="prev-step">← Back</button>
+    </div>
+
+    <!-- Step 7: Message -->
+    <div class="form-step" data-step="7">
+      <h3>Tell us a bit more.</h3>
+      <div class="input-group">
+        <textarea id="formMessage" rows="4" placeholder="Your vision, idea, or challenge…"></textarea>
+        <span class="focus-border"></span>
+      </div>
+      <button class="next-step" id="submitFormBtn">Start the Project →</button>
+      <button class="prev-step">← Back</button>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="creative-footer">
+    <div class="footer-content">
+      <div class="footer-logo"><img src="assets/images/logo.png" alt="Chronotales Logo" class="footer-logo-img"><div class="logo-underline"></div></div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/chronotalespvtltd/" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/chronotalesindia/" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/chronotales/" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/@chronotalespvtltd" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="copyright"><p>&copy; <span id="currentYear"></span> Chronotales Private Limited. All rights reserved.</p><p class="tagline">Simplify. Amplify. Transcend.</p></div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/about-main.js"></script>
+  <script>
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
+  </script>
+</body>
+</html>

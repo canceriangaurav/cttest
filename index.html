@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Critical CSS for above‑the‑fold (hero section) -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; overflow-x: hidden; font-family: 'Inter', sans-serif; }
+    #stars { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+    #hero-wrapper { height: 220vh; }
+    #hero { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+    #sequence { position: fixed; width: 100%; height: 100%; z-index: 10; }
+    #glassOverlay { position: absolute; inset: 0; z-index: 12; pointer-events: none; background: linear-gradient(120deg, rgba(255,255,255,0.06), transparent 40%), radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 60%); mix-blend-mode: soft-light; }
+    #fadeOverlay { position: absolute; inset: 0; background: #000; opacity: 1; z-index: 30; }
+    .headline { position: absolute; left: 50%; transform: translate(-50%, -50%); font-size: clamp(60px, 8vw, 160px); text-align: center; font-family: 'Bebas Neue', sans-serif; }
+    #topText { top: 42%; z-index: 25; color: #fff; }
+    #bottomText { top: 58%; z-index: 2; color: #ffe600; }
+    #ghostText { top: 58%; z-index: 15; color: #ffe600; opacity: 0.2; }
+  </style>
+
+  <title>Chronotales – Unified Branding Agency | Simplify, Amplify, Transcend</title>
+  <meta name="description" content="Chronotales is an all‑in‑one branding agency offering digital, creative, physical, and strategic services. One team, one vision, less stress, more impact.">
+  <meta name="keywords" content="branding agency, creative agency, digital marketing, brand strategy, logo design, website development, video production, Noida, NCR, India">
+  <meta name="author" content="Gaurav Singh Chauhan">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://chronotales.org/">
+
+  <!-- Preload main CSS and fonts -->
+  <link rel="preload" href="css/base.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/nav.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/components.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/sections.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/animations.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/nav.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/sections.css"><link rel="stylesheet" href="css/animations.css"></noscript>
+
+  <!-- Google Fonts (async) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Font Awesome (async) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+
+  <!-- GSAP & ScrollTrigger (defer – not needed for initial paint) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Google Analytics (async) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y05SC8PN1Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y05SC8PN1Q');
+  </script>
+
+  <!-- Preload first 5 WebP frames -->
+  <link rel="preload" as="image" href="assets/images/hourglass/hourglass_00001.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/hourglass/hourglass_00002.webp">
+  <link rel="preload" as="image" href="assets/images/hourglass/hourglass_00003.webp">
+  <link rel="preload" as="image" href="assets/images/hourglass/hourglass_00004.webp">
+  <link rel="preload" as="image" href="assets/images/hourglass/hourglass_00005.webp">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Chronotales",
+    "url": "https://chronotales.org/",
+    "logo": "https://chronotales.org/assets/images/logo.png",
+    "description": "Unified branding agency offering integrated digital, creative, physical, and strategic services.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ghaziabad",
+      "addressRegion": "Uttar Pradesh",
+      "addressCountry": "IN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@chronotales.org",
+      "contactType": "customer service"
+    },
+    "sameAs": [
+      "https://www.facebook.com/chronotalespvtltd/",
+      "https://www.instagram.com/chronotalesindia/",
+      "https://www.linkedin.com/company/chronotales/",
+      "https://www.youtube.com/@chronotalespvtltd"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- 🧭 BREADCRUMB -->
+<div id="breadcrumb" class="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<div class="hidden-breadcrumb" aria-hidden="true" style="display: none;">
+  <span itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="https://chronotales.org/" itemprop="item"><span itemprop="name">Home</span></a>
+      <meta itemprop="position" content="1" />
+    </span>
+  </span>
+</div>
+<!-- 🌌 NAV MAP -->
+<div id="nav-map" class="nav-map">
+  <canvas id="galaxy-canvas"></canvas>
+  <div class="map-content">
+    <div class="portrait-box">
+      <div class="central-logo">
+        <img src="assets/images/logo.png" alt="Chronotales Logo">
+      </div>
+      <div class="orbit-container">
+        <div class="map-node node-enter active" data-link="index.html">
+          <div class="node-glow"></div>
+          <span>Enter the Story</span>
+          <div class="planet-ring"></div>
+        </div>
+        <div class="map-node node-about" data-link="about.html">
+          <div class="node-glow"></div>
+          <span>Understand the System</span>
+          <div class="planet-ring"></div>
+        </div>
+        <div class="map-node node-domains" data-link="domains.html">
+          <div class="node-glow"></div>
+          <span>Explore the Domains</span>
+          <div class="planet-ring"></div>
+        </div>
+        <div class="map-node node-creative" data-link="creative.html">
+          <div class="node-glow"></div>
+          <span>Creative Domain</span>
+          <div class="planet-ring"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <canvas id="stars"></canvas>
+
+  <!-- SOUND CONSENT MODAL -->
+  <div id="soundConsentModal" class="sound-modal">
+    <div class="sound-modal-content">
+      <h2>🎧 Enhance Your Experience</h2>
+      <p>Would you like to enable immersive sound effects for this website?</p>
+      <div class="sound-modal-buttons">
+        <button id="enableSoundBtn" class="sound-btn yes">Yes, Enable Sound</button>
+        <button id="disableSoundBtn" class="sound-btn no">No, Keep Muted</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <div id="hero-wrapper">
+    <div id="hero">
+      <canvas id="sequence"></canvas>
+      <div id="glassOverlay"></div>
+      <div id="bottomText" class="headline">BEYOND TRENDS</div>
+      <div id="ghostText" class="headline">BEYOND TRENDS</div>
+      <div id="topText" class="headline">BEYOND TIME</div>
+      <div id="fadeOverlay"></div>
+    </div>
+  </div>
+
+  <!-- FILM SECTION -->
+  <section id="film-section">
+    <div id="film-container">
+      <div id="film-strip">
+        <div class="frame"><canvas class="frame-canvas"></canvas><div class="frame-text">Imagine</div></div>
+        <div class="frame"><canvas class="frame-canvas"></canvas><div class="frame-text">A World</div></div>
+        <div class="frame"><canvas class="frame-canvas"></canvas><div class="frame-text">where</div></div>
+        <div class="frame"><canvas class="frame-canvas"></canvas><div class="frame-text">your brand</div></div>
+        <div class="frame"><canvas class="frame-canvas"></canvas><div class="frame-text">doesn't</div></div>
+        <div class="frame"><canvas class="frame-canvas"></canvas><div class="frame-text">just speak</div></div>
+        <div class="frame"><canvas class="frame-canvas"></canvas><div class="frame-text">— IT</div></div>
+        <div class="frame"><canvas class="frame-canvas"></canvas><div class="frame-text">SINGS.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTOR SECTION -->
+  <section id="projector-section">
+    <div id="screen-wrap">
+      <div id="floating-text">
+        <div class="hero-line">Too many hands.</div>
+        <div class="hero-line">Too many voices.</div>
+        <div class="hero-line">Nothing aligns.</div>
+        <div class="hero-line">Disconnected.</div>
+        <div class="hero-line">What if…</div>
+        <div class="hero-line">it all just worked?</div>
+        <div class="hero-line">One vision.</div>
+        <div class="hero-line">One system.</div>
+        <div class="hero-line">One team.</div>
+        <div class="hero-line brand">Chronotales.</div>
+      </div>
+      <div id="projection-screen">
+        <div id="screen-content"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSFORM SECTION -->
+  <section class="ct-transform">
+    <div class="ct-scroll-progress" id="ctScrollProgress"></div>
+    <div class="ct-scroll-space">
+      <div class="ct-story">
+        <canvas id="ctCanvas" width="800" height="800"></canvas>
+        <div class="ct-text" id="ctText">EVERYTHING BEGINS…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING SECTION -->
+  <section class="closing-section">
+    <canvas id="closing-particles" class="closing-canvas"></canvas>
+    <div class="closing-container">
+      <div class="headline-reveal">
+        <h2 class="closing-headline" id="headline-part1">Your Brand.</h2>
+        <h2 class="closing-headline" id="headline-part2">Simplified.</h2>
+      </div>
+      <div class="micro-story">
+        <p>Because clarity isn’t a luxury.<br>It’s a necessity.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card"><div class="benefit-icon">⚡</div><h3>Less Stress</h3><p>One team, one vision, one point of contact.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">🎯</div><h3>More Impact</h3><p>Cohesive storytelling across every touchpoint.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">💰</div><h3>Better ROI</h3><p>No mismatched work, no hidden costs.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">😌</div><h3>Peace of Mind</h3><p>Legal safety & strategic foresight.</p></div>
+      </div>
+      <div class="team-showcase">
+        <div class="team-member left">
+          <div class="member-avatar"><img src="assets/images/gaurav.png" alt="Gaurav Chauhan"></div>
+          <h4>Gaurav Chauhan</h4>
+          <p>Creative visionary • 20+ years</p>
+          <span class="member-tag">Execution</span>
+        </div>
+        <div class="team-connection"></div>
+        <div class="team-member right">
+          <div class="member-avatar"><img src="assets/images/amit.png" alt="Amit Kumar"></div>
+          <h4>Amit Kumar</h4>
+          <p>Strategic & legal expert</p>
+          <span class="member-tag">Sustainability</span>
+        </div>
+      </div>
+      <div class="orbit-system">
+        <div class="orbit-center"></div>
+        <div class="orbit-ring">
+          <div class="orbit-item" data-domain="digital">📱 Digital</div>
+          <div class="orbit-item" data-domain="creative">🎨 Creative</div>
+          <div class="orbit-item" data-domain="physical">🏢 Physical</div>
+          <div class="orbit-item" data-domain="strategic">⚖️ Strategic</div>
+        </div>
+      </div>
+      <div class="closing-cta">
+        <p class="pre-cta">Ready to stop juggling agencies?</p>
+        <a href="#" class="cta-button">Let's Build Your Brand <span class="arrow">→</span></a>
+        <p class="contact-info">hello@chronotales.com  |  +91 99905 43100</p>
+      </div>
+      <div class="back-to-top">
+        <button id="backToTopBtn" aria-label="Back to top">↑</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="creative-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="assets/images/logo.png" alt="Chronotales Logo" class="footer-logo-img">
+        <div class="logo-underline"></div>
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/chronotalespvtltd/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/chronotalesindia/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/chronotales/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/@chronotalespvtltd" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="copyright">
+        <p>&copy; <span id="currentYear"></span> Chronotales Private Limited. All rights reserved.</p>
+        <p class="tagline">Simplify. Amplify. Transcend.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL POPUP FORM -->
+  <div id="contactModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-header">
+      <h3>Let’s Create <span class="gold">Magic</span></h3>
+      <div class="modal-sub">Tell us about your vision. We’ll get back within 24h.</div>
+    </div>
+    <form id="contactForm" action="form.php" method="POST" enctype="multipart/form-data">
+      <div class="input-group">
+        <input type="text" id="name" name="name" required>
+        <label for="name">Your Name *</label>
+        <span class="focus-border"></span>
+      </div>
+      <div class="input-group">
+        <input type="email" id="email" name="email" required>
+        <label for="email">Email Address *</label>
+        <span class="focus-border"></span>
+      </div>
+      <div class="input-group">
+      <input type="tel" id="phone" name="phone" required>
+      <label for="phone">Phone Number *</label>
+      <span class="focus-border"></span>
+      </div>
+      <div class="input-group">
+        <textarea id="message" name="message" rows="4"></textarea>
+        <label for="message">Tell us about your brand / project</label>
+        <span class="focus-border"></span>
+      </div>
+
+      <!-- Honeypot field (hidden from humans) -->
+       <div style="display:none;"><input type="text" name="fax" id="fax" value=""></div>
+  <div class="form-status" id="formStatus"></div>
+  <button type="submit" class="submit-btn">Send Message <span class="arrow">→</span></button>
+</form>
+  </div>
+</div>
+
+
+  <!-- JavaScript Modules (type="module") -->
+  <script type="module" src="js/main.js"></script>
+<script>
+  // Force the form to submit normally, overriding any previous handlers
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.onsubmit = null;
+    // Remove any other listeners (optional)
+    const newForm = form.cloneNode(true);
+    form.parentNode.replaceChild(newForm, form);
+  }
+</script>
+
+</body>
+</html>

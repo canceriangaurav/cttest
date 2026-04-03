@@ -1,0 +1,95 @@
+:root {
+  /* Color system */
+  --color-bg: #050505;
+  --color-bg-elevated: #0b0b0d;
+  --color-surface: rgba(255, 255, 255, 0.04);
+  --color-surface-strong: rgba(255, 255, 255, 0.08);
+  --color-surface-accent: rgba(244, 211, 106, 0.08);
+  --color-text: #f5f2ea;
+  --color-text-dim: rgba(245, 242, 234, 0.72);
+  --color-text-muted: rgba(245, 242, 234, 0.48);
+  --color-accent: #f4d36a;
+  --color-accent-strong: #ffd86f;
+  --color-accent-deep: #b48a2d;
+  --color-line: rgba(244, 211, 106, 0.18);
+  --color-line-strong: rgba(244, 211, 106, 0.45);
+  --color-overlay: rgba(0, 0, 0, 0.48);
+  --gradient-accent: linear-gradient(135deg, #f7e08e 0%, #d4a63c 100%);
+  --gradient-glass: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+
+  /* Typography */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --fs-display-xl: clamp(3.75rem, 10vw, 9rem);
+  --fs-display-lg: clamp(3rem, 8vw, 6.5rem);
+  --fs-display-md: clamp(2.2rem, 6vw, 4rem);
+  --fs-h1: clamp(2.2rem, 5vw, 3.8rem);
+  --fs-h2: clamp(1.75rem, 4vw, 2.8rem);
+  --fs-h3: clamp(1.2rem, 2.8vw, 1.8rem);
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-body-sm: 0.9375rem;
+  --fs-caption: 0.8rem;
+  --lh-display: 0.98;
+  --lh-tight: 1.15;
+  --lh-body: 1.65;
+  --tracking-display: 0.04em;
+  --tracking-label: 0.14em;
+
+  /* Spacing */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+
+  /* Layout */
+  --container-sm: 40rem;
+  --container-md: 64rem;
+  --container-lg: 76rem;
+  --container-xl: 90rem;
+  --section-pad-y: clamp(4rem, 10vw, 8rem);
+  --section-pad-x: clamp(1rem, 4vw, 2rem);
+
+  /* Radius */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+
+  /* Shadows and glow */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.28);
+  --shadow-deep: 0 24px 60px rgba(0, 0, 0, 0.48);
+  --glow-accent-sm: 0 0 12px rgba(244, 211, 106, 0.18);
+  --glow-accent-md: 0 0 24px rgba(244, 211, 106, 0.28);
+  --glow-accent-lg: 0 0 44px rgba(244, 211, 106, 0.22);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.25, 0.9, 0.3, 1);
+  --ease-cinematic: cubic-bezier(0.2, 0.85, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 600ms;
+  --dur-xl: 1000ms;
+
+  /* Layers */
+  --z-bg: 0;
+  --z-stars: 5;
+  --z-canvas: 10;
+  --z-content: 20;
+  --z-overlay: 40;
+  --z-nav: 60;
+  --z-modal: 80;
+  --z-toast: 90;
+}
+
+:root[data-theme='gold-night'] {
+  color-scheme: dark;
+}

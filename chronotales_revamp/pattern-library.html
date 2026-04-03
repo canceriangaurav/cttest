@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="gold-night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronotales Pattern Library</title>
+  <meta name="description" content="Chronotales design system foundation and pattern library.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/system.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/motion.css">
+  <style>
+    .pl-nav-space { height: 5rem; }
+    .pl-display-xl { font-size: var(--fs-display-xl); }
+    .pl-display-lg { font-size: var(--fs-display-lg); }
+    .pl-display-md { font-size: var(--fs-display-md); }
+    .pl-muted { color: var(--color-text-muted); }
+    .pl-panel {
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-xl);
+      background: var(--gradient-glass);
+      box-shadow: var(--shadow-soft);
+      padding: var(--space-xl);
+    }
+    .pl-token-grid,
+    .pl-type-grid { display: grid; gap: var(--space-lg); }
+    .pl-token-grid { grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); }
+    .pl-swatch {
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      min-height: 8rem;
+      border: 1px solid var(--color-line);
+      display: grid;
+      align-content: end;
+    }
+    .pl-nav-preview { min-height: 34rem; display: grid; place-items: center; }
+    .pl-realm-grid { display: grid; gap: var(--space-lg); grid-template-columns: 1fr; }
+    .pl-gallery-grid { display: grid; gap: var(--space-lg); grid-template-columns: 1fr; }
+    .pl-gallery-item {
+      min-height: 16rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-line);
+      background: radial-gradient(circle at top, rgba(244,211,106,0.12), transparent 45%), linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      padding: var(--space-xl);
+      display: grid;
+      align-content: end;
+    }
+    .pl-form-grid { display: grid; gap: var(--space-lg); }
+    .pl-footer-demo { margin-top: var(--space-3xl); }
+    @media (min-width: 48rem) {
+      .pl-type-grid { grid-template-columns: 1fr 1fr; }
+      .pl-realm-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .pl-gallery-grid { grid-template-columns: 1.1fr 0.9fr; }
+      .pl-form-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <div class="transition-overlay"></div>
+
+    <button class="breadcrumb-trigger" aria-label="Open navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <aside class="nav-panel">
+      <div class="nav-orbit float-ambient">
+        <div class="nav-orbit__core">CT</div>
+        <a class="nav-orbit__node" href="#hero" style="top: 48%; left: 6%;">Origin</a>
+        <a class="nav-orbit__node" href="#sections" style="top: 22%; left: 20%;">System</a>
+        <a class="nav-orbit__node" href="#cards" style="top: 22%; left: 55%;">Realms</a>
+        <a class="nav-orbit__node" href="#footer" style="top: 48%; left: 74%;">Portal</a>
+      </div>
+    </aside>
+
+    <main class="page-main">
+      <div class="pl-nav-space"></div>
+
+      <header id="hero" class="hero-shell section--flush-top">
+        <div class="hero-layout">
+          <div class="stack">
+            <span class="kicker">Chronotales / Pattern Library</span>
+            <h1 class="pl-display-xl">A cinematic system before a single page is rebuilt.</h1>
+            <p class="section-heading__text">This foundation page defines the visual language, component primitives, atmosphere, and interaction rhythm for the fresh Chronotales build.</p>
+            <div class="cluster">
+              <a class="button button--primary" href="#cards">Explore components</a>
+              <a class="button button--secondary" href="#forms">View form system</a>
+            </div>
+          </div>
+          <div class="media-frame media-frame--ratio">
+            <div class="sweep-overlay is-active"></div>
+            <div style="height:100%; display:grid; place-items:center; padding:var(--space-xl); text-align:center;">
+              <div class="stack">
+                <span class="kicker">Hero media placeholder</span>
+                <h2 class="pl-display-md">Replace with transparent video, cinematic still, or controlled motion canvas.</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="container stack">
+          <div class="section-heading">
+            <span class="kicker">Design tokens</span>
+            <h2 class="section-heading__title">The palette is small. The atmosphere is not.</h2>
+            <p class="section-heading__text">Chronotales should feel premium through restraint: black depth, soft off-white text, and gold as signal rather than decoration.</p>
+          </div>
+          <div class="pl-token-grid">
+            <article class="pl-swatch" style="background:#050505;"><strong>Background</strong><span class="pl-muted">--color-bg</span></article>
+            <article class="pl-swatch" style="background:#0b0b0d;"><strong>Elevated</strong><span class="pl-muted">--color-bg-elevated</span></article>
+            <article class="pl-swatch" style="background:#f4d36a; color:#17130a;"><strong>Accent</strong><span class="pl-muted" style="color:rgba(23,19,10,0.72)">--color-accent</span></article>
+            <article class="pl-swatch" style="background:linear-gradient(135deg,#f7e08e,#d4a63c); color:#17130a;"><strong>Gradient accent</strong><span class="pl-muted" style="color:rgba(23,19,10,0.72)">Primary CTA</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="sections">
+        <div class="container stack">
+          <div class="section-heading">
+            <span class="kicker">Typography and structure</span>
+            <h2 class="section-heading__title">Bold statements, calm body copy.</h2>
+          </div>
+          <div class="pl-type-grid">
+            <div class="pl-panel stack">
+              <div class="pl-display-lg">Display Large</div>
+              <h2>Heading Two</h2>
+              <h3>Heading Three</h3>
+              <p>Body copy should support the spectacle, not compete with it. Use it to anchor narrative clarity, not to crowd the experience.</p>
+            </div>
+            <div class="pl-panel stack">
+              <span class="kicker">Section heading block</span>
+              <div class="section-heading">
+                <h2 class="section-heading__title">A reusable intro pattern for every major chapter.</h2>
+                <p class="section-heading__text">This heading block becomes the narrative anchor for system, realms, case studies, and contact sections.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="cards">
+        <div class="container stack">
+          <div class="section-heading">
+            <span class="kicker">Realm cards</span>
+            <h2 class="section-heading__title">Every page should assemble from shared visual grammar.</h2>
+          </div>
+          <div class="pl-realm-grid">
+            <article class="card realm-card">
+              <div class="realm-card__media"></div>
+              <div class="card__body">
+                <h3 class="card__title">Creative</h3>
+                <p class="card__text">Where ideas take form through image, story, and expression.</p>
+              </div>
+            </article>
+            <article class="card realm-card">
+              <div class="realm-card__media"></div>
+              <div class="card__body">
+                <h3 class="card__title">Digital</h3>
+                <p class="card__text">Where motion, systems, and live presence extend the brand.</p>
+              </div>
+            </article>
+            <article class="card realm-card">
+              <div class="realm-card__media"></div>
+              <div class="card__body">
+                <h3 class="card__title">Physical</h3>
+                <p class="card__text">Where the brand becomes tangible, spatial, and impossible to ignore.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container stack">
+          <div class="section-heading">
+            <span class="kicker">Narrative media / gallery</span>
+            <h2 class="section-heading__title">Cinematic content blocks should scale cleanly from mobile upward.</h2>
+          </div>
+          <div class="pl-gallery-grid">
+            <article class="pl-gallery-item">
+              <span class="kicker">Horizontal narrative section</span>
+              <h3 class="card__title">Film strip / case-study lead panel</h3>
+              <p class="card__text">Starter skeleton for a future reusable story section.</p>
+            </article>
+            <article class="pl-gallery-item">
+              <span class="kicker">Gallery card</span>
+              <h3 class="card__title">Visual reference tile</h3>
+              <p class="card__text">Use this pattern for realms, chronicles, and supporting case imagery.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="forms">
+        <div class="container stack">
+          <div class="section-heading">
+            <span class="kicker">Forms and CTA</span>
+            <h2 class="section-heading__title">Usability comes first when a user is ready to act.</h2>
+          </div>
+          <div class="pl-form-grid">
+            <div class="pl-panel stack">
+              <label class="form-field">
+                <span>Name</span>
+                <input type="text" placeholder="Your name">
+              </label>
+              <label class="form-field">
+                <span>Email</span>
+                <input type="email" placeholder="hello@brand.com">
+              </label>
+              <label class="form-field">
+                <span>Message</span>
+                <textarea rows="5" placeholder="Tell us what you want to build."></textarea>
+              </label>
+            </div>
+            <div class="pl-panel stack">
+              <span class="kicker">CTA set</span>
+              <div class="cluster">
+                <button class="button button--primary">Start the system</button>
+                <button class="button button--secondary">See all realms</button>
+                <button class="button button--ghost">Read the philosophy</button>
+              </div>
+              <article class="card team-card">
+                <div class="card__body stack">
+                  <div class="team-card__avatar"></div>
+                  <div>
+                    <h3 class="card__title">Founder / team card pattern</h3>
+                    <p class="card__text">Use for leadership, collaborators, and compact trust blocks across the site.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer id="footer" class="footer pl-footer-demo">
+        <div class="container footer__inner stack">
+          <span class="kicker">Footer system</span>
+          <h2 class="section-heading__title">Chronotales</h2>
+          <p class="section-heading__text">Simplify. Amplify. Transcend. The footer should feel like a calm final frame, not an afterthought.</p>
+          <div class="cluster">
+            <a class="button button--ghost" href="#">Instagram</a>
+            <a class="button button--ghost" href="#">LinkedIn</a>
+            <a class="button button--ghost" href="#">YouTube</a>
+          </div>
+          <p class="pl-muted">© Chronotales — Pattern library foundation</p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const trigger = document.querySelector('.breadcrumb-trigger');
+    const panel = document.querySelector('.nav-panel');
+    const overlay = document.querySelector('.transition-overlay');
+
+    trigger?.addEventListener('click', () => {
+      panel?.classList.toggle('is-open');
+      document.body.classList.toggle('is-nav-open');
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        overlay?.classList.add('is-active');
+        setTimeout(() => overlay?.classList.remove('is-active'), 700);
+      });
+    });
+  </script>
+</body>
+</html>

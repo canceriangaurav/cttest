@@ -1,8 +1,13 @@
 /**
  * Scene 1 hero module for the lightweight Origin homepage.
- * Owns only Scene 1 internal choreography.
+ * Progress-driven version for PNG hourglass sequence.
  */
 export function initOriginHero() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    console.warn('OriginHero: Browser environment not available.');
+    return null;
+  }
+
   if (typeof gsap === 'undefined') {
     console.warn('OriginHero: GSAP not available.');
     return null;
@@ -19,15 +24,45 @@ export function initOriginHero() {
   const support = document.getElementById('heroSupport');
   const kicker = document.getElementById('heroKicker');
 
-  if (!scene || !layer || !hero || !titleTop || !titleBottom || !titleBottomGhost || !mediaWrap || !hourglass || !support || !kicker) {
+  if (
+    !scene ||
+    !layer ||
+    !hero ||
+    !titleTop ||
+    !titleBottom ||
+    !titleBottomGhost ||
+    !mediaWrap ||
+    !hourglass ||
+    !support ||
+    !kicker
+  ) {
     console.warn('OriginHero: Missing required DOM elements.');
     return null;
   }
 
   const FRAME_COUNT = 26;
   const FRAME_PATH = './assets/images/hourglass';
+
   let lastFrame = -1;
   let preloadStarted = false;
+
+  function clamp01(value) {
+    return Math.max(0, Math.min(1, value));
+  }
+
+  function lerp(a, b, t) {
+    return a + ((b - a) * t);
+  }
+
+  function mapProgress(value, start, end) {
+    if (end <= start) return 0;
+    return clamp01((value - start) / (end - start));
+  }
+
+  function easeOut(t) {
+    const p = clamp01(t);
+    return 1 - Math.pow(1 - p, 3);
+  }
 
   function getFrameSrc(frameNumber) {
     const padded = String(frameNumber).padStart(5, '0');
@@ -48,60 +83,118 @@ export function initOriginHero() {
     });
   }
 
-  gsap.set(titleTop, { x: -220, opacity: 0 });
-  gsap.set(titleBottom, { x: 220, opacity: 0 });
-  gsap.set(titleBottomGhost, { x: 220, opacity: 0 });
-  gsap.set(mediaWrap, { scale: 0.92, opacity: 0, transformOrigin: 'center center' });
-  gsap.set([support, kicker], { opacity: 0 });
-  gsap.set(hero, { opacity: 1 });
+  function setFrame(frameNumber) {
+    const safeFrame = Math.max(1, Math.min(FRAME_COUNT, frameNumber));
+    if (safeFrame === lastFrame) return;
+    hourglass.src = getFrameSrc(safeFrame);
+    lastFrame = safeFrame;
+  }
 
-  const introTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  introTimeline
-    .to(kicker, { opacity: 1, duration: 0.45 }, 0.05)
-    .to(titleTop, { x: 0, opacity: 1, duration: 1.05 }, 0.1)
-    .to(titleBottom, { x: 0, opacity: 0.96, duration: 1.05 }, 0.18)
-    .to(titleBottomGhost, { x: 0, opacity: 0.38, duration: 1.05 }, 0.18)
-    .to(mediaWrap, { scale: 1, opacity: 1, duration: 1.0 }, 0.22)
-    .to(support, { opacity: 1, duration: 0.7 }, 0.5)
-    .call(preloadFrames, null, 0.8);
+  function reset() {
+    gsap.set(hero, { opacity: 1 });
+    gsap.set(layer, { opacity: 1 });
 
-  function update(progress) {
-    const p = Math.max(0, Math.min(1, progress));
+    gsap.set(titleTop, { x: -220, opacity: 0 });
+    gsap.set(titleBottom, { x: 220, opacity: 0 });
+    gsap.set(titleBottomGhost, { x: 220, opacity: 0 });
 
-    if (p > 0.08) {
-      preloadFrames();
-    }
-
-    const frame = Math.min(
-      FRAME_COUNT,
-      Math.max(1, Math.floor(p * (FRAME_COUNT - 1)) + 1)
-    );
-
-    if (frame !== lastFrame) {
-      hourglass.src = getFrameSrc(frame);
-      lastFrame = frame;
-    }
-
-    gsap.set(titleTop, {
-      x: -120 * Math.max(0, (p - 0.35) / 0.55),
-      opacity: 1 - Math.max(0, (p - 0.35) / 0.45)
+    gsap.set(mediaWrap, {
+      scale: 1,
+      opacity: 1,
+      transformOrigin: 'center center'
     });
 
-    const bottomP = Math.max(0, (p - 0.35) / 0.45);
-    gsap.set([titleBottom, titleBottomGhost], { x: 120 * bottomP });
-    gsap.set(titleBottom, { opacity: 0.96 * (1 - bottomP) });
-    gsap.set(titleBottomGhost, { opacity: 0.38 * (1 - bottomP) });
+    gsap.set(support, { opacity: 0, y: 10 });
+    gsap.set(kicker, { opacity: 0, y: -8 });
 
-    const supportP = Math.max(0, (p - 0.45) / 0.35);
-    gsap.set(support, { opacity: 1 - supportP, y: 24 * supportP });
-    gsap.set(kicker, { opacity: 1 - supportP, y: -10 * supportP });
+    setFrame(1);
+  }
 
-    const mediaP = Math.max(0, (p - 0.35) / 0.55);
+  function update(progress) {
+    const p = clamp01(progress);
+
+    if (p > 0.08) preloadFrames();
+
+    // 0.00 -> 0.20 : only hourglass
+    // 0.20 -> 0.45 : text enters
+    // 0.45 -> 1.00 : text exits + full sequence + zoom out
+
+    const enterP = easeOut(mapProgress(p, 0.20, 0.45));
+    const exitP = mapProgress(p, 0.45, 1.00);
+
+    // top from left to center, then out left
+    const topX = p < 0.45
+      ? lerp(-220, 0, enterP)
+      : lerp(0, -220, exitP);
+
+    const topOpacity = p < 0.45
+      ? enterP
+      : 1 - exitP;
+
+    // bottom + ghost from right to center, then out right
+    const bottomX = p < 0.45
+      ? lerp(220, 0, enterP)
+      : lerp(0, 220, exitP);
+
+    const bottomOpacity = p < 0.45
+      ? 0.96 * enterP
+      : 0.96 * (1 - exitP);
+
+    const ghostOpacity = p < 0.45
+      ? 0.38 * enterP
+      : 0.38 * (1 - exitP);
+
+    gsap.set(titleTop, {
+      x: topX,
+      opacity: topOpacity
+    });
+
+    gsap.set(titleBottom, {
+      x: bottomX,
+      opacity: bottomOpacity
+    });
+
+    gsap.set(titleBottomGhost, {
+      x: bottomX,
+      opacity: ghostOpacity
+    });
+
+    const supportFadeIn = mapProgress(p, 0.26, 0.42);
+    const supportFadeOut = mapProgress(p, 0.55, 0.88);
+    const hourglassFadeOut = mapProgress(p, 0.88, 1);
+
+    gsap.set(support, {
+      opacity: supportFadeIn * (1 - supportFadeOut),
+      y: lerp(10, 0, supportFadeIn) + lerp(0, 24, supportFadeOut)
+    });
+
+    gsap.set(kicker, {
+      opacity: supportFadeIn * (1 - supportFadeOut),
+      y: lerp(-8, 0, supportFadeIn) + lerp(0, -10, supportFadeOut)
+    });
+
+    // Sequence starts with Act 2 region
+    const sequenceP = mapProgress(p, 0.45, 1.00);
+    const frame = Math.min(
+      FRAME_COUNT,
+      Math.max(1, Math.floor(sequenceP * (FRAME_COUNT - 1)) + 1)
+    );
+    setFrame(frame);
+
     gsap.set(mediaWrap, {
-      scale: 1 + (0.4 * mediaP),
-      opacity: 1 - Math.max(0, (p - 0.82) / 0.18)
+      scale: lerp(1, 0.82, sequenceP),
+      opacity: 1 - hourglassFadeOut,
+      transformOrigin: 'center center'
     });
   }
 
-  return { scene, layer, hero, introTimeline, update };
+  reset();
+
+  return {
+    scene,
+    layer,
+    hero,
+    update,
+    reset
+  };
 }

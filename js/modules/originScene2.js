@@ -1,8 +1,18 @@
 /**
  * Scene 2 for the Origin homepage.
  * TV reveal + autoplaying video + cinematic staged copy.
+ *
+ * Designed to support both:
+ * - continuous progress updates
+ * - discrete step/act control
  */
+
 export function initOriginScene2() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    console.warn('OriginScene2: Browser environment not available.');
+    return null;
+  }
+
   if (typeof gsap === 'undefined') {
     console.warn('OriginScene2: GSAP not available.');
     return null;
@@ -21,20 +31,26 @@ export function initOriginScene2() {
   const screenGlow = document.getElementById('tvGeoOrb');
   const video = document.getElementById('tvSceneVideo');
 
-  if (
-    !scene ||
-    !layer ||
-    !stage ||
-    !media ||
-    !glow ||
-    !copy ||
-    !fade ||
-    !screenWrap ||
-    !screenOverlay ||
-    !screenGlow ||
-    !video
-  ) {
-    console.warn('OriginScene2: Missing required DOM elements.');
+  const required = {
+    scene,
+    layer,
+    stage,
+    media,
+    glow,
+    copy,
+    fade,
+    screenWrap,
+    screenOverlay,
+    screenGlow,
+    video
+  };
+
+  const missing = Object.entries(required)
+    .filter(([, el]) => !el)
+    .map(([key]) => key);
+
+  if (missing.length) {
+    console.warn(`OriginScene2: Missing required DOM elements: ${missing.join(', ')}`);
     return null;
   }
 
@@ -46,12 +62,34 @@ export function initOriginScene2() {
     'THIS IS CHRONOTALES'
   ];
 
+  let destroyed = false;
   let activeActIndex = -1;
+  let lastRevealProgress = -1;
+  let lastActsProgress = -1;
   let videoLoaded = false;
   let videoPlaybackUnlocked = false;
 
+  function clamp01(value) {
+    return Math.max(0, Math.min(1, value));
+  }
+
+  function lerp(a, b, t) {
+    return a + ((b - a) * t);
+  }
+
+  function progressToActIndex(progress) {
+    const p = clamp01(progress);
+
+    if (p < 0.18) return 0;
+    if (p < 0.38) return 1;
+    if (p < 0.60) return 2;
+    if (p < 0.82) return 3;
+    return 4;
+  }
+
   function ensureVideoSource() {
-    if (videoLoaded) return;
+    if (videoLoaded || destroyed) return;
+
     const source = video.dataset.src;
     if (!source) return;
 
@@ -61,6 +99,8 @@ export function initOriginScene2() {
   }
 
   function tryPlayVideo() {
+    if (destroyed) return;
+
     ensureVideoSource();
 
     try {
@@ -68,7 +108,15 @@ export function initOriginScene2() {
       if (promise && typeof promise.catch === 'function') {
         promise.catch(() => {});
       }
-    } catch (err) {}
+    } catch (error) {
+      // no-op
+    }
+  }
+
+  function unlockPlayback() {
+    if (videoPlaybackUnlocked || destroyed) return;
+    videoPlaybackUnlocked = true;
+    tryPlayVideo();
   }
 
   video.muted = true;
@@ -77,31 +125,44 @@ export function initOriginScene2() {
   video.playsInline = true;
   video.preload = 'none';
 
-  gsap.set(layer, { opacity: 0 });
-  gsap.set(stage, { opacity: 1 });
-  gsap.set(media, {
-    opacity: 0,
-    scale: 0.6,
-    y: 28,
-    transformOrigin: 'center center'
-  });
-  gsap.set(glow, {
-    opacity: 0,
-    scale: 0.72,
-    transformOrigin: 'center center'
-  });
-  gsap.set(copy, {
-    opacity: 0,
-    y: 18
-  });
-  gsap.set(fade, { opacity: 0 });
-  gsap.set(screenWrap, { opacity: 1, scale: 1 });
-  gsap.set(screenOverlay, { opacity: 0.10 });
-  gsap.set(screenGlow, { opacity: 0.20, scale: 0.9 });
+  function setBaseState() {
+    gsap.killTweensOf([media, glow, copy, screenOverlay, screenGlow, stage, fade]);
 
-  copy.textContent = '';
+    gsap.set(layer, { opacity: 0 });
+    gsap.set(stage, { opacity: 1 });
+
+    gsap.set(media, {
+      opacity: 0,
+      scale: 0.6,
+      y: 28,
+      transformOrigin: 'center center'
+    });
+
+    gsap.set(glow, {
+      opacity: 0,
+      scale: 0.72,
+      transformOrigin: 'center center'
+    });
+
+    gsap.set(copy, {
+      opacity: 0,
+      y: 18,
+      scale: 1
+    });
+
+    gsap.set(fade, { opacity: 0 });
+    gsap.set(screenWrap, { opacity: 1, scale: 1 });
+    gsap.set(screenOverlay, { opacity: 0.10 });
+    gsap.set(screenGlow, { opacity: 0.20, scale: 0.9 });
+
+    copy.textContent = '';
+    activeActIndex = -1;
+    lastRevealProgress = 0;
+    lastActsProgress = 0;
+  }
 
   const ambientTimeline = gsap.timeline({
+    paused: false,
     repeat: -1,
     yoyo: true,
     defaults: { ease: 'sine.inOut' }
@@ -113,64 +174,88 @@ export function initOriginScene2() {
     .to(screenOverlay, { opacity: 0.18, duration: 2.4 }, 0.12)
     .to(media, { y: 20, duration: 3.0 }, 0.2);
 
-  function setAct(index) {
-    if (index === activeActIndex) return;
-    activeActIndex = index;
+  function animateCopyIn(text) {
+    copy.textContent = text;
 
-    const text = acts[index];
+    gsap.fromTo(
+      copy,
+      { opacity: 0, y: 30, scale: 0.985 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.55,
+        ease: 'power3.out',
+        overwrite: true
+      }
+    );
+  }
+
+  function setAct(index, options = {}) {
+    if (destroyed) return;
+
+    const safeIndex = Math.max(0, Math.min(acts.length - 1, index));
+    const text = acts[safeIndex];
     if (!text) return;
+
+    const { immediate = false } = options;
+
+    if (safeIndex === activeActIndex && !immediate) return;
+    activeActIndex = safeIndex;
+
+    gsap.killTweensOf(copy);
+
+    if (immediate) {
+      copy.textContent = text;
+      gsap.set(copy, {
+        opacity: 1,
+        y: 0,
+        scale: safeIndex === acts.length - 1 ? 1.05 : 1
+      });
+      return;
+    }
 
     gsap.to(copy, {
       opacity: 0,
       y: 20,
-      duration: 0.2,
+      duration: 0.18,
       ease: 'power2.out',
       overwrite: true,
       onComplete: () => {
-        copy.textContent = text;
-
-        gsap.fromTo(
-          copy,
-          { opacity: 0, y: 30, scale: 0.98 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.6,
-            ease: 'power3.out',
-            overwrite: true
-          }
-        );
+        animateCopyIn(text);
       }
     });
   }
 
-  function unlockPlayback() {
-    if (videoPlaybackUnlocked) return;
-    videoPlaybackUnlocked = true;
-    tryPlayVideo();
-  }
-
   function updateReveal(progress) {
-    const p = Math.max(0, Math.min(1, progress));
+    if (destroyed) return;
+
+    const p = clamp01(progress);
+    if (p === lastRevealProgress) return;
+    lastRevealProgress = p;
 
     gsap.set(layer, { opacity: 1 });
+
     gsap.set(media, {
       opacity: p,
-      scale: 0.6 + (0.4 * p),
-      y: 28 * (1 - p)
+      scale: lerp(0.6, 1, p),
+      y: lerp(28, 0, p)
     });
+
     gsap.set(glow, {
       opacity: 0.32 * p,
-      scale: 0.72 + (0.28 * p)
+      scale: lerp(0.72, 1, p)
     });
+
     gsap.set(copy, {
-      opacity: p > 0.58 ? ((p - 0.58) / 0.42) : 0,
+      opacity: p > 0.58 ? (p - 0.58) / 0.42 : 0,
       y: 18 * (1 - p)
     });
+
     gsap.set(screenOverlay, {
       opacity: 0.08 + (0.10 * p)
     });
+
     gsap.set(screenGlow, {
       opacity: 0.18 + (0.20 * p),
       scale: 0.9 + (0.10 * p)
@@ -182,21 +267,13 @@ export function initOriginScene2() {
   }
 
   function updateActs(progress) {
-    const p = Math.max(0, Math.min(1, progress));
+    if (destroyed) return;
 
-    let index = 0;
-    if (p < 0.18) {
-      index = 0;
-    } else if (p < 0.38) {
-      index = 1;
-    } else if (p < 0.60) {
-      index = 2;
-    } else if (p < 0.82) {
-      index = 3;
-    } else {
-      index = 4;
-    }
+    const p = clamp01(progress);
+    if (p === lastActsProgress) return;
+    lastActsProgress = p;
 
+    const index = progressToActIndex(p);
     setAct(index);
 
     gsap.set(screenOverlay, {
@@ -219,14 +296,44 @@ export function initOriginScene2() {
     unlockPlayback();
   }
 
+  function reset() {
+    if (destroyed) return;
+
+    gsap.killTweensOf([media, glow, copy, screenOverlay, screenGlow, stage, fade]);
+    ambientTimeline.pause(0);
+    setBaseState();
+    ambientTimeline.play(0);
+  }
+
+  function destroy() {
+    if (destroyed) return;
+    destroyed = true;
+
+    ambientTimeline.kill();
+    gsap.killTweensOf([media, glow, copy, screenOverlay, screenGlow, stage, fade]);
+
+    try {
+      video.pause();
+    } catch (error) {
+      // no-op
+    }
+  }
+
+  setBaseState();
+
   return {
     scene,
     layer,
     fade,
+    video,
+    acts,
     updateReveal,
     updateActs,
-    video,
+    setAct,
     ensureVideoSource,
-    tryPlayVideo
+    tryPlayVideo,
+    unlockPlayback,
+    reset,
+    destroy
   };
 }

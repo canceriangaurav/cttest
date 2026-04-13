@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="gold-night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronotales Pattern Library</title>
+  <meta name="description" content="Chronotales live visual pattern library with real section, heading, grid, and gallery examples.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/system.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/sections.css">
+  <link rel="stylesheet" href="./css/motion.css">
+
+  <style>
+    .pl-index {
+      position: sticky;
+      top: 0;
+      z-index: 55;
+      backdrop-filter: blur(16px);
+      background: rgba(5, 5, 5, 0.82);
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    .pl-index__inner {
+      width: min(100% - 2rem, var(--container-xl));
+      margin-inline: auto;
+      display: flex;
+      gap: .6rem;
+      overflow-x: auto;
+      padding: .85rem 0;
+      scrollbar-width: none;
+    }
+
+    .pl-index__inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pl-chip {
+      white-space: nowrap;
+      padding: .65rem .95rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-line);
+      background: rgba(255,255,255,0.03);
+      color: var(--color-text-dim);
+      font-size: var(--fs-caption);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      transition: all var(--dur-base) var(--ease-standard);
+    }
+
+    .pl-chip:hover {
+      color: var(--color-accent);
+      border-color: var(--color-line-strong);
+      background: rgba(244,211,106,0.06);
+    }
+
+    .pl-demo-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: var(--fs-caption);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-label);
+    }
+
+    .pl-demo-label::before {
+      content: "";
+      width: 2rem;
+      height: 1px;
+      background: var(--color-line-strong);
+    }
+
+    .pl-heading-display {
+      font-family: var(--font-display);
+      line-height: .96;
+      letter-spacing: var(--tracking-display);
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .pl-h-xl { font-size: var(--fs-display-xl); }
+    .pl-h-lg { font-size: var(--fs-display-lg); }
+    .pl-h-md { font-size: var(--fs-display-md); }
+    .pl-h-1 { font-size: var(--fs-h1); }
+    .pl-h-2 { font-size: var(--fs-h2); }
+    .pl-h-3 { font-size: var(--fs-h3); }
+
+    .pl-nav-top,
+    .pl-nav-floating,
+    .pl-nav-sticky {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-lg);
+      padding: .9rem 1rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-line);
+    }
+
+    .pl-nav-floating {
+      background: rgba(10,10,12,0.48);
+      backdrop-filter: blur(12px);
+    }
+
+    .pl-nav-sticky {
+      background: rgba(5,5,5,0.92);
+    }
+
+    .pl-nav-links {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      color: var(--color-text-dim);
+      font-size: var(--fs-body-sm);
+    }
+
+    .pl-nav-overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at center, rgba(15,15,20,0.96), rgba(0,0,0,0.98));
+    }
+
+    .pl-nav-overlay__inner {
+      display: grid;
+      gap: var(--space-md);
+      text-align: center;
+    }
+
+    .pl-nav-overlay__inner a {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: var(--tracking-display);
+      text-transform: uppercase;
+    }
+
+    .pl-cta-band {
+      padding: var(--space-3xl) var(--space-2xl);
+      text-align: center;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-line);
+      background:
+        radial-gradient(circle at top, rgba(244,211,106,0.08), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      box-shadow: var(--shadow-deep);
+    }
+
+    .pl-cta-band > * + * {
+      margin-top: var(--space-md);
+    }
+
+    .pl-cta-band h2 {
+      font-size: var(--fs-h1);
+      max-width: 14ch;
+      margin-inline: auto;
+    }
+
+    .pl-cta-actions {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--space-xl);
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <div class="transition-overlay"></div>
+
+    <button class="breadcrumb-trigger" aria-label="Open navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <aside class="nav-panel" id="navPanel">
+      <div class="nav-orbit float-ambient">
+        <div class="nav-orbit__core">CT</div>
+        <a class="nav-orbit__node" href="#hero" style="top: 48%; left: 6%;">Hero</a>
+        <a class="nav-orbit__node" href="#headings" style="top: 18%; left: 18%;">Type</a>
+        <a class="nav-orbit__node" href="#layouts" style="top: 18%; left: 56%;">Layout</a>
+        <a class="nav-orbit__node" href="#galleries" style="top: 48%; left: 74%;">Gallery</a>
+        <a class="nav-orbit__node" href="#homepage-sequences" style="top: 66%; left: 14%;">Home</a>
+<a class="nav-orbit__node" href="#realm-page-structures" style="top: 10%; left: 38%;">Realm</a>
+<a class="nav-orbit__node" href="#article-page-structures" style="top: 68%; left: 56%;">Article</a>
+<a class="nav-orbit__node" href="#portal-page-structures" style="top: 30%; left: 76%;">Portal</a>
+      </div>
+    </aside>
+
+    <div class="pl-index">
+      <div class="pl-index__inner">
+        <a class="pl-chip" href="#homepage-sequences">Homepage</a>
+<a class="pl-chip" href="#realm-page-structures">Realms</a>
+<a class="pl-chip" href="#article-page-structures">Articles</a>
+<a class="pl-chip" href="#portal-page-structures">Portal</a>
+        <a class="pl-chip" href="#hero">Hero</a>
+        <a class="pl-chip" href="#headings">Headings</a>
+        <a class="pl-chip" href="#layouts">Layouts</a>
+        <a class="pl-chip" href="#grids">Grids</a>
+        <a class="pl-chip" href="#galleries">Galleries</a>
+        <a class="pl-chip" href="#nav">Navigation</a>
+        <a class="pl-chip" href="#quote">Quote</a>
+        <a class="pl-chip" href="#stats">Stats</a>
+        <a class="pl-chip" href="#cta">CTA</a>
+      </div>
+    </div>
+
+    <main class="page-main">
+      <!-- HERO -->
+      <header class="hero-video" id="hero">
+        <div class="hero-video__bg"></div>
+        <div class="hero-video__content">
+          <span class="kicker">Chronotales Pattern Library</span>
+          <h1 class="hero-video__title reveal-blur is-visible">
+            Real section examples before rebuilding begins.
+          </h1>
+          <p class="section-intro__text">
+            This page now acts like a visual builder reference — showing actual section structures instead of mostly describing them.
+          </p>
+          <div class="cluster">
+            <a class="button button--primary" href="#layouts">See layout examples</a>
+            <a class="button button--secondary" href="#galleries">See gallery types</a>
+          </div>
+          <div class="placeholder-box placeholder-box--hero signal-surface">
+            <div class="sweep-overlay is-active"></div>
+            <div>
+              <strong>Immersive Hero Placeholder</strong>
+              Transparent video / abstract motion / cinematic still / orbit animation
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- HEADINGS -->
+      <section class="section" id="headings">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Heading system</span>
+            <h2 class="section-intro__title">Types of heading and subheading combinations</h2>
+            <p class="section-intro__text">
+              These are real heading patterns for homepage, realm pages, editorial pages, and CTA endings.
+            </p>
+          </div>
+
+          <div class="heading-stack">
+            <article class="heading-block">
+              <div class="heading-eyebrow">Kicker + Hero H1 + support</div>
+              <h2 class="pl-heading-display pl-h-xl">Beyond Time.</h2>
+              <p class="heading-support">Large cinematic opening for homepage hero and realm page hero.</p>
+            </article>
+
+            <article class="heading-block">
+              <div class="heading-eyebrow">Kicker + Display Md + body</div>
+              <h2 class="pl-heading-display pl-h-md">A calmer section opener</h2>
+              <p class="heading-support">Good for intro sections and editorial-style blocks.</p>
+            </article>
+
+            <article class="heading-block">
+              <div class="heading-eyebrow">Eyebrow + H1 + muted line</div>
+              <h2 class="pl-heading-display pl-h-1">System structure</h2>
+              <p class="heading-support" style="color: var(--color-text-muted);">Use this for section chapters and internal page hierarchy.</p>
+            </article>
+
+            <article class="heading-block">
+              <div class="heading-eyebrow">H2 + H3 + body</div>
+              <h2 class="pl-heading-display pl-h-2">Feature section heading</h2>
+              <h3 class="pl-heading-display pl-h-3">Supporting subheading</h3>
+              <p class="heading-support">Use when a feature block needs stronger nested hierarchy.</p>
+            </article>
+
+            <article class="heading-block">
+              <div class="heading-eyebrow">Minimal heading + paragraph</div>
+              <h3 class="pl-heading-display pl-h-3">Quiet secondary section</h3>
+              <p class="heading-support">Useful for FAQ intros, transitions, and supporting content zones.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- LAYOUTS -->
+      <section class="section" id="layouts">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Layout examples</span>
+            <h2 class="section-intro__title">Real structural section examples</h2>
+          </div>
+
+          <div class="stack">
+            <span class="pl-demo-label">Single column editorial</span>
+            <div class="one-column-editorial intro-band">
+              <h3 class="pl-heading-display pl-h-2">One-column reading section</h3>
+              <p>Use for manifesto, founder note, long intro, philosophy, article sections, and premium message-led pages.</p>
+              <p>This is where copy breathes and the layout should not compete with it.</p>
+            </div>
+
+            <span class="pl-demo-label">Split 50/50 section</span>
+            <div class="split-layout">
+              <div class="intro-band">
+                <h3 class="pl-heading-display pl-h-2">Text + media split</h3>
+                <p>Use for about blocks, service sections, and realm intros.</p>
+              </div>
+              <div class="placeholder-box placeholder-media placeholder-media--landscape">
+                <div>
+                  <strong>Media Placeholder</strong>
+                  Image / video / abstract layer
+                </div>
+              </div>
+            </div>
+
+            <span class="pl-demo-label">Asymmetrical 2/1</span>
+            <div class="asym-21">
+              <div class="placeholder-box placeholder-box--hero">
+                <div>
+                  <strong>Large Feature Placeholder</strong>
+                  Featured media / showcase / chapter anchor
+                </div>
+              </div>
+              <div class="contact-card">
+                <div class="stack">
+                  <h3 class="pl-heading-display pl-h-3">Side content block</h3>
+                  <p>Metadata, short summary, buttons, or supporting notes.</p>
+                </div>
+              </div>
+            </div>
+
+            <span class="pl-demo-label">Asymmetrical 1/2</span>
+            <div class="asym-12">
+              <div class="contact-card">
+                <div class="stack">
+                  <h3 class="pl-heading-display pl-h-3">Narrow intro block</h3>
+                  <p>Useful for content-led layouts with a stronger visual panel.</p>
+                </div>
+              </div>
+              <div class="placeholder-box placeholder-box--hero">
+                <div>
+                  <strong>Primary Visual Placeholder</strong>
+                  Video / image / abstract animation
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRIDS -->
+      <section class="section" id="grids">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Grid examples</span>
+            <h2 class="section-intro__title">2-column, 3-column, 4-column, 2x2, 3x3</h2>
+          </div>
+
+          <div class="stack">
+            <span class="pl-demo-label">2-column section</span>
+            <div class="grid-2">
+              <article class="card"><div class="card__body"><h3 class="card__title">Column 1</h3><p class="card__text">Two-up layout for paired ideas.</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">Column 2</h3><p class="card__text">Use for split features and paired offers.</p></div></article>
+            </div>
+
+            <span class="pl-demo-label">3-column section</span>
+            <div class="grid-3">
+              <article class="card"><div class="card__body"><h3 class="card__title">One</h3><p class="card__text">Capabilities</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">Two</h3><p class="card__text">Pillars</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">Three</h3><p class="card__text">Features</p></div></article>
+            </div>
+
+            <span class="pl-demo-label">4-column section</span>
+            <div class="grid-4">
+              <article class="card"><div class="card__body"><h3 class="card__title">01</h3><p class="card__text">Stat / icon / principle</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">02</h3><p class="card__text">Stat / icon / principle</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">03</h3><p class="card__text">Stat / icon / principle</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">04</h3><p class="card__text">Stat / icon / principle</p></div></article>
+            </div>
+
+            <span class="pl-demo-label">2x2 section</span>
+            <div class="grid-2x2">
+              <article class="card"><div class="card__body"><h3 class="card__title">A</h3><p class="card__text">Quadrant block</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">B</h3><p class="card__text">Quadrant block</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">C</h3><p class="card__text">Quadrant block</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">D</h3><p class="card__text">Quadrant block</p></div></article>
+            </div>
+
+            <span class="pl-demo-label">3x3 section</span>
+            <div class="grid-3x3">
+              <article class="card"><div class="card__body"><h3 class="card__title">1</h3></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">2</h3></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">3</h3></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">4</h3></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">5</h3></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">6</h3></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">7</h3></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">8</h3></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">9</h3></div></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERIES -->
+      <section class="section" id="galleries">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Gallery types</span>
+            <h2 class="section-intro__title">With text, without text, mosaic, equal grid, editorial strip, mixed placeholders</h2>
+          </div>
+
+          <div class="stack">
+            <span class="pl-demo-label">Equal grid with captions</span>
+            <div class="gallery-caption">
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--landscape"><div><strong>Gallery Image</strong>Landscape</div></div>
+                <p class="gallery-card__caption">Caption text below image.</p>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--landscape"><div><strong>Gallery Image</strong>Landscape</div></div>
+                <p class="gallery-card__caption">Caption text below image.</p>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--landscape"><div><strong>Gallery Image</strong>Landscape</div></div>
+                <p class="gallery-card__caption">Caption text below image.</p>
+              </article>
+            </div>
+
+            <span class="pl-demo-label">Equal grid image-only</span>
+            <div class="gallery-image-only">
+              <div class="placeholder-box placeholder-media placeholder-media--square"><div><strong>Image Only</strong>No caption</div></div>
+              <div class="placeholder-box placeholder-media placeholder-media--square"><div><strong>Image Only</strong>No caption</div></div>
+              <div class="placeholder-box placeholder-media placeholder-media--square"><div><strong>Image Only</strong>No caption</div></div>
+            </div>
+
+            <span class="pl-demo-label">Mosaic gallery</span>
+            <div class="gallery-mosaic">
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-box--hero"><div><strong>Large Mosaic Feature</strong>Main visual block</div></div>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--square"><div><strong>Small Tile</strong></div></div>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--square"><div><strong>Small Tile</strong></div></div>
+              </article>
+            </div>
+
+            <span class="pl-demo-label">Editorial strip gallery</span>
+            <div class="gallery-strip">
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-box--hero"><div><strong>Primary Feature</strong>Lead case or chapter visual</div></div>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--portrait"><div><strong>Portrait</strong></div></div>
+                <p class="gallery-card__caption">Founder / profile / poster</p>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--portrait"><div><strong>Portrait</strong></div></div>
+                <p class="gallery-card__caption">Editorial support visual</p>
+              </article>
+            </div>
+
+            <span class="pl-demo-label">Mixed media gallery</span>
+            <div class="gallery-mixed grid-3">
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--landscape"><div><strong>Image Placeholder</strong></div></div>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--landscape"><div><strong>Video Placeholder</strong>Muted autoplay</div></div>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--landscape"><div><strong>Abstract Motion Placeholder</strong></div></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION -->
+      <section class="section" id="nav">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Navigation examples</span>
+            <h2 class="section-intro__title">Different nav structures inside one consistent visual language</h2>
+          </div>
+
+          <div class="nav-demo-stack">
+            <article class="nav-demo-box">
+              <div class="pl-demo-label">Minimal top nav</div>
+              <div class="pl-nav-top" style="margin-top: 2rem;">
+                <strong>Chronotales</strong>
+                <div class="pl-nav-links"><span>System</span><span>Realms</span><span>Scroll</span><span>Portal</span></div>
+              </div>
+            </article>
+
+            <article class="nav-demo-box">
+              <div class="pl-demo-label">Floating nav</div>
+              <div class="pl-nav-floating" style="margin-top: 2rem;">
+                <strong>Chronotales</strong>
+                <div class="pl-nav-links"><span>Origin</span><span>Structure</span><span>Work</span><span>Connect</span></div>
+              </div>
+            </article>
+
+            <article class="nav-demo-box">
+              <div class="pl-demo-label">Overlay nav</div>
+              <div class="pl-nav-overlay">
+                <div class="pl-nav-overlay__inner">
+                  <a href="#">System</a>
+                  <a href="#">Realms</a>
+                  <a href="#">Chronicles</a>
+                  <a href="#">Connect</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUOTE -->
+      <section class="section" id="quote">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Quote / founder section</span>
+            <h2 class="section-intro__title">Real founder and quote block example</h2>
+          </div>
+
+          <div class="quote-section">
+            <div class="placeholder-box placeholder-media placeholder-media--portrait">
+              <div>
+                <strong>Founder Portrait Placeholder</strong>
+                Image / still / monochrome portrait
+              </div>
+            </div>
+            <blockquote class="quote-panel">
+              <p class="quote-panel__text">
+                “What begins as fragments becomes a system, then a presence, then a world.”
+              </p>
+              <p class="quote-panel__meta">Founder message / signature statement / manifesto pull quote</p>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="section" id="stats">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Stats / proof section</span>
+            <h2 class="section-intro__title">Use this for metrics, achievements, and structured proof</h2>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-card__value">20+</div>
+              <p class="stat-card__label">Years of experience</p>
+            </article>
+            <article class="stat-card">
+              <div class="stat-card__value">4</div>
+              <p class="stat-card__label">Core realms</p>
+            </article>
+            <article class="stat-card">
+              <div class="stat-card__value">1</div>
+              <p class="stat-card__label">Unified system</p>
+            </article>
+            <article class="stat-card">
+              <div class="stat-card__value">∞</div>
+              <p class="stat-card__label">Possible combinations</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section" id="cta">
+        <div class="container">
+          <div class="cta-band">
+            <span class="kicker">CTA ending</span>
+            <h2 class="cta-band__title">Ready to start rebuilding with a real system?</h2>
+            <p class="cta-band__text">Use this as the closeout structure for homepage, realm pages, articles, and portal transitions.</p>
+            <div class="cta-band__actions">
+              <a class="button button--primary" href="#">Start the system</a>
+              <a class="button button--secondary" href="#">Explore realms</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOMEPAGE-SPECIFIC SEQUENCE IDEAS -->
+      <section class="section" id="homepage-sequences">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Homepage-specific sequence ideas</span>
+            <h2 class="section-intro__title">Possible narrative flows for the main entry experience</h2>
+            <p class="section-intro__text">
+              These are not full pages yet. They are sequence blueprints you can use to decide the emotional and structural order of the homepage.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            <article class="feature-card">
+              <div class="feature-card__eyebrow">Sequence A</div>
+              <h3 class="feature-card__title">Cinematic Entry Flow</h3>
+              <p class="feature-card__text">
+                Hero → short manifesto → four realms gateway → showcase strip → founder statement → CTA
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card__eyebrow">Sequence B</div>
+              <h3 class="feature-card__title">System First Flow</h3>
+              <p class="feature-card__text">
+                Hero → problem/solution split → capabilities grid → realm cards → metrics/proof → CTA
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card__eyebrow">Sequence C</div>
+              <h3 class="feature-card__title">Editorial Flow</h3>
+              <p class="feature-card__text">
+                Hero → long intro statement → 2/1 feature section → gallery strip → quote block → CTA
+              </p>
+            </article>
+          </div>
+
+          <div class="stack">
+            <span class="pl-demo-label">Homepage sequence example</span>
+            <div class="one-column-editorial intro-band">
+              <h3 class="pl-heading-display pl-h-2">01. Immersive Hero</h3>
+              <p>Large visual, short statement, one strong primary CTA.</p>
+            </div>
+
+            <div class="split-layout">
+              <div class="contact-card stack">
+                <h3 class="pl-heading-display pl-h-3">02. Brand Problem / Brand Clarity</h3>
+                <p>Explain what Chronotales resolves and why the system matters.</p>
+              </div>
+              <div class="placeholder-box placeholder-media placeholder-media--landscape">
+                <div><strong>Supporting Media</strong>Abstract visual / motion layer</div>
+              </div>
+            </div>
+
+            <div class="grid-4">
+              <article class="card"><div class="card__body"><h3 class="card__title">03. Digital</h3><p class="card__text">Realm preview</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">04. Creative</h3><p class="card__text">Realm preview</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">05. Physical</h3><p class="card__text">Realm preview</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">06. Strategic</h3><p class="card__text">Realm preview</p></div></article>
+            </div>
+
+            <div class="gallery-strip">
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-box--hero">
+                  <div><strong>07. Featured Showcase</strong>Main homepage case-study visual</div>
+                </div>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--portrait">
+                  <div><strong>08. Founder</strong></div>
+                </div>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--portrait">
+                  <div><strong>09. CTA Support</strong></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REALM-PAGE-SPECIFIC STRUCTURES -->
+      <section class="section" id="realm-page-structures">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Realm-page-specific structures</span>
+            <h2 class="section-intro__title">How a single realm page can be built</h2>
+            <p class="section-intro__text">
+              Use these for Creative, Digital, Physical, and Strategic pages while only changing accent, imagery, and copy tone.
+            </p>
+          </div>
+
+          <div class="stack">
+            <span class="pl-demo-label">Realm page master structure</span>
+
+            <div class="hero-split__inner" style="width:100%; margin:0;">
+              <div class="hero-split__content contact-card">
+                <span class="kicker">Realm Hero</span>
+                <h3 class="pl-heading-display pl-h-lg">Creative Realm</h3>
+                <p>Big opening line, short realm statement, CTA, and quick service cluster.</p>
+              </div>
+              <div class="placeholder-box placeholder-box--hero">
+                <div><strong>Realm Hero Media</strong>Video / abstract visual / poster frame</div>
+              </div>
+            </div>
+
+            <div class="split-layout">
+              <div class="intro-band">
+                <h3 class="pl-heading-display pl-h-2">What this realm is</h3>
+                <p>Short explanation of the realm philosophy and what makes it distinct.</p>
+              </div>
+              <div class="grid-2">
+                <article class="card"><div class="card__body"><h3 class="card__title">Service 01</h3><p class="card__text">Offering summary</p></div></article>
+                <article class="card"><div class="card__body"><h3 class="card__title">Service 02</h3><p class="card__text">Offering summary</p></div></article>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <article class="feature-card"><div class="feature-card__eyebrow">Capability</div><h3 class="feature-card__title">Visual Direction</h3><p class="feature-card__text">Core strength block</p></article>
+              <article class="feature-card"><div class="feature-card__eyebrow">Capability</div><h3 class="feature-card__title">Execution</h3><p class="feature-card__text">Core strength block</p></article>
+              <article class="feature-card"><div class="feature-card__eyebrow">Capability</div><h3 class="feature-card__title">Consistency</h3><p class="feature-card__text">Core strength block</p></article>
+            </div>
+
+            <div class="gallery-mosaic">
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-box--hero">
+                  <div><strong>Featured Realm Project</strong></div>
+                </div>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--square"><div><strong>Case 02</strong></div></div>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--square"><div><strong>Case 03</strong></div></div>
+              </article>
+            </div>
+
+            <div class="quote-section">
+              <blockquote class="quote-panel">
+                <p class="quote-panel__text">“This realm is where expression becomes coherent.”</p>
+                <p class="quote-panel__meta">Realm philosophy line</p>
+              </blockquote>
+              <div class="contact-card stack">
+                <h3 class="pl-heading-display pl-h-3">Next step CTA</h3>
+                <p>Short CTA specific to this realm.</p>
+                <div class="cluster">
+                  <a class="button button--primary" href="#">Start with this realm</a>
+                  <a class="button button--secondary" href="#">See related work</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARTICLE-PAGE-SPECIFIC STRUCTURES -->
+      <section class="section" id="article-page-structures">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Article-page-specific structures</span>
+            <h2 class="section-intro__title">Editorial page architecture for Scroll / articles / essays</h2>
+            <p class="section-intro__text">
+              This is the structure for a premium reading experience instead of a generic blog post.
+            </p>
+          </div>
+
+          <div class="stack">
+            <span class="pl-demo-label">Article page master flow</span>
+
+            <div class="one-column-editorial intro-band">
+              <span class="kicker">Category / Date / Reading Time</span>
+              <h3 class="pl-heading-display pl-h-lg">The title of the article goes here</h3>
+              <p class="intro-band__lead">A strong opening standfirst that introduces the tension or idea.</p>
+            </div>
+
+            <div class="placeholder-box placeholder-box--hero">
+              <div><strong>Featured Article Visual</strong>Cover still / motion loop / cinematic artwork</div>
+            </div>
+
+            <div class="one-column-editorial">
+              <h3 class="pl-heading-display pl-h-2">Section subheading</h3>
+              <p>Editorial paragraph style for the main body copy. This should remain readable and spacious.</p>
+              <p>Second paragraph continuing the idea with a clear reading rhythm and enough breathing space.</p>
+            </div>
+
+            <blockquote class="quote-panel">
+              <p class="quote-panel__text">“A strong article page should feel like a designed reading environment.”</p>
+              <p class="quote-panel__meta">Pull quote / highlighted line</p>
+            </blockquote>
+
+            <div class="gallery-caption">
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--landscape">
+                  <div><strong>Inline Image</strong></div>
+                </div>
+                <p class="gallery-card__caption">Caption or context note below media.</p>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--landscape">
+                  <div><strong>Inline Image</strong></div>
+                </div>
+                <p class="gallery-card__caption">Caption or context note below media.</p>
+              </article>
+              <article class="gallery-card">
+                <div class="placeholder-box placeholder-media placeholder-media--landscape">
+                  <div><strong>Inline Image</strong></div>
+                </div>
+                <p class="gallery-card__caption">Caption or context note below media.</p>
+              </article>
+            </div>
+
+            <div class="one-column-editorial intro-band">
+              <h3 class="pl-heading-display pl-h-2">Conclusion block</h3>
+              <p>Conclude the article, summarize the thought, and direct the reader toward related exploration.</p>
+            </div>
+
+            <div class="article-preview-grid">
+              <article class="article-preview">
+                <div class="article-preview__meta">Related Reading</div>
+                <h3 class="article-preview__title">Article card one</h3>
+                <p class="article-preview__excerpt">Short excerpt preview</p>
+              </article>
+              <article class="article-preview">
+                <div class="article-preview__meta">Related Reading</div>
+                <h3 class="article-preview__title">Article card two</h3>
+                <p class="article-preview__excerpt">Short excerpt preview</p>
+              </article>
+              <article class="article-preview">
+                <div class="article-preview__meta">Related Reading</div>
+                <h3 class="article-preview__title">Article card three</h3>
+                <p class="article-preview__excerpt">Short excerpt preview</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTAL-PAGE-SPECIFIC STRUCTURES -->
+      <section class="section" id="portal-page-structures">
+        <div class="container stack">
+          <div class="section-intro">
+            <span class="kicker">Portal-page-specific structures</span>
+            <h2 class="section-intro__title">Contact / inquiry / portal architecture</h2>
+            <p class="section-intro__text">
+              This should feel welcoming and premium, not like a default contact form page.
+            </p>
+          </div>
+
+          <div class="stack">
+            <span class="pl-demo-label">Portal page master flow</span>
+
+            <div class="split-layout">
+              <div class="contact-card stack">
+                <span class="kicker">Portal Hero</span>
+                <h3 class="pl-heading-display pl-h-lg">Let’s begin the system.</h3>
+                <p>Short invitation, calm reassurance, and a clear next step.</p>
+                <div class="cluster">
+                  <a class="button button--primary" href="#">Start inquiry</a>
+                  <a class="button button--secondary" href="#">Explore realms first</a>
+                </div>
+              </div>
+              <div class="placeholder-box placeholder-box--hero">
+                <div><strong>Portal Visual Placeholder</strong>Subtle animation / ambient visual / map-like system graphic</div>
+              </div>
+            </div>
+
+            <div class="grid-4">
+              <article class="card"><div class="card__body"><h3 class="card__title">Brand System</h3><p class="card__text">Inquiry path</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">Website</h3><p class="card__text">Inquiry path</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">Campaign</h3><p class="card__text">Inquiry path</p></div></article>
+              <article class="card"><div class="card__body"><h3 class="card__title">Realm Work</h3><p class="card__text">Inquiry path</p></div></article>
+            </div>
+
+            <div class="contact-shell">
+              <div class="contact-card stack">
+                <label class="form-field">
+                  <span>Name</span>
+                  <input type="text" placeholder="Your name">
+                </label>
+                <label class="form-field">
+                  <span>Email</span>
+                  <input type="email" placeholder="hello@brand.com">
+                </label>
+                <label class="form-field">
+                  <span>Project Type</span>
+                  <select>
+                    <option>Brand system</option>
+                    <option>Website</option>
+                    <option>Campaign</option>
+                    <option>Realm work</option>
+                  </select>
+                </label>
+                <label class="form-field">
+                  <span>Message</span>
+                  <textarea rows="5" placeholder="Tell us what you want to build."></textarea>
+                </label>
+                <div class="cluster">
+                  <button class="button button--primary">Send Inquiry</button>
+                  <button class="button button--secondary">Save Draft</button>
+                </div>
+              </div>
+
+              <div class="contact-card stack">
+                <h3 class="pl-heading-display pl-h-3">Support / clarity panel</h3>
+                <p>Explain the process, what happens next, and how quickly the user can expect a response.</p>
+                <div class="contact-meta">
+                  <div class="contact-meta__item">
+                    <strong>Email</strong>
+                    <p>hello@chronotales.com</p>
+                  </div>
+                  <div class="contact-meta__item">
+                    <strong>Typical response</strong>
+                    <p>Within 24–48 hours</p>
+                  </div>
+                  <div class="contact-meta__item">
+                    <strong>Best for</strong>
+                    <p>Brand systems, websites, campaigns, and immersive experiences</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cta-band">
+              <h3 class="cta-band__title">Still exploring?</h3>
+              <p class="cta-band__text">Send them back into realms, work, or articles without dead-ending the journey.</p>
+              <div class="cta-band__actions">
+                <a class="button button--secondary" href="#">See Realms</a>
+                <a class="button button--secondary" href="#">Read Scroll</a>
+                <a class="button button--primary" href="#">Start Inquiry</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <footer class="footer">
+        <div class="container footer__inner stack">
+          <span class="kicker">Chronotales Pattern Library</span>
+          <h2 class="section-heading__title">This is now a visual section library, not just a descriptive document.</h2>
+          <p class="section-heading__text">
+            Next, extend this with page-specific examples for homepage, realms, articles, and portal.
+          </p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const trigger = document.querySelector('.breadcrumb-trigger');
+    const panel = document.querySelector('.nav-panel');
+    const overlay = document.querySelector('.transition-overlay');
+
+    trigger?.addEventListener('click', () => {
+      panel?.classList.toggle('is-open');
+      document.body.classList.toggle('is-nav-open');
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        panel?.classList.remove('is-open');
+        document.body.classList.remove('is-nav-open');
+        overlay?.classList.add('is-active');
+        setTimeout(() => overlay?.classList.remove('is-active'), 700);
+      });
+    });
+  </script>
+</body>
+</html>

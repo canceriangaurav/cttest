@@ -1,0 +1,87 @@
+/* -----------------------------------
+   audio permission modal
+----------------------------------- */
+
+.ct-audio-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.ct-audio-modal.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ct-audio-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.ct-audio-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 460px);
+  padding: 1.5rem 1.25rem;
+  border-radius: 22px;
+  border: 1px solid rgba(244, 211, 106, 0.18);
+  background: rgba(10, 10, 14, 0.92);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  text-align: center;
+}
+
+.ct-audio-modal__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.ct-audio-modal__text {
+  margin: 0;
+  color: var(--color-text-dim);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.ct-audio-modal__actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.ct-audio-modal__button {
+  min-width: 110px;
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 211, 106, 0.22);
+  background: rgba(255,255,255,0.04);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.ct-audio-modal__button:hover {
+  transform: translateY(-1px);
+}
+
+.ct-audio-modal__button--primary {
+  background: rgba(244, 211, 106, 0.14);
+  border-color: rgba(244, 211, 106, 0.36);
+  color: var(--color-accent);
+}
+/* -----------------------------------
+   END OF audio permission modal
+----------------------------------- */

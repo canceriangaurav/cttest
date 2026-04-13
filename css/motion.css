@@ -1,0 +1,326 @@
+@import url('./system.css');
+
+/* --------------------------------------------------
+   KEYFRAMES
+-------------------------------------------------- */
+
+@keyframes ct-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.5rem);
+  }
+}
+
+@keyframes ct-sweep {
+  0% {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+}
+
+@keyframes ct-pulse-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.16);
+    opacity: 0;
+  }
+}
+
+@keyframes ct-blur-resolve {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(1rem) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes ct-line-draw {
+  0% {
+    transform: scaleX(0);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ct-zoom-settle {
+  0% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ct-soft-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(244,211,106,0);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(244,211,106,0.18);
+  }
+}
+
+/* --------------------------------------------------
+   REVEAL HELPERS
+-------------------------------------------------- */
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity var(--dur-slow) var(--ease-cinematic),
+    transform var(--dur-slow) var(--ease-cinematic);
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-blur {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(1rem) scale(0.985);
+}
+
+.reveal-blur.is-visible {
+  animation: ct-blur-resolve var(--dur-xl) var(--ease-cinematic) both;
+}
+
+.zoom-reveal {
+  opacity: 0;
+  transform: scale(1.08);
+}
+
+.zoom-reveal.is-visible {
+  animation: ct-zoom-settle var(--dur-xl) var(--ease-soft) both;
+}
+
+/* --------------------------------------------------
+   OVERLAYS / SIGNAL SWEEP
+-------------------------------------------------- */
+
+.sweep-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 35%,
+    rgba(255,255,255,0.08),
+    transparent 65%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+.sweep-overlay.is-active {
+  animation: ct-sweep var(--dur-xl) var(--ease-soft) both;
+}
+
+.signal-surface {
+  position: relative;
+  overflow: hidden;
+}
+
+.signal-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 35%,
+    rgba(255,255,255,0.08),
+    transparent 65%
+  );
+  transform: translateX(-110%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.signal-surface:hover::after {
+  animation: ct-sweep var(--dur-xl) var(--ease-soft) both;
+}
+
+/* --------------------------------------------------
+   AMBIENT MOTION
+-------------------------------------------------- */
+
+.float-ambient {
+  animation: ct-float 4s ease-in-out infinite;
+}
+
+.glow-idle {
+  animation: ct-soft-glow 3.2s ease-in-out infinite;
+}
+
+/* --------------------------------------------------
+   GLOBAL TRANSITION OVERLAY
+-------------------------------------------------- */
+
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(244,211,106,0.08),
+    rgba(0,0,0,0.95)
+  );
+  transition: opacity var(--dur-slow) var(--ease-cinematic);
+}
+
+.transition-overlay.is-active {
+  opacity: 1;
+}
+
+/* --------------------------------------------------
+   HOVER GLOW
+-------------------------------------------------- */
+
+.hover-glow {
+  transition:
+    transform var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard),
+    border-color var(--dur-base) var(--ease-standard);
+}
+
+.hover-glow:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-deep), var(--glow-accent-md);
+  border-color: var(--color-line-strong);
+}
+
+/* --------------------------------------------------
+   PULSE NODE
+-------------------------------------------------- */
+
+.pulse-node {
+  position: relative;
+}
+
+.pulse-node::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(244,211,106,0.26);
+  transform: translate(-50%, -50%);
+  animation: ct-pulse-ring 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------
+   LINE DRAW
+-------------------------------------------------- */
+
+.line-draw {
+  transform-origin: left center;
+  animation: ct-line-draw var(--dur-xl) var(--ease-cinematic) both;
+}
+
+/* --------------------------------------------------
+   MOTION DEMO HELPERS
+-------------------------------------------------- */
+
+.motion-demo-fade,
+.motion-demo-blur,
+.motion-demo-zoom,
+.motion-demo-line {
+  position: relative;
+  min-height: 12rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-line);
+  background: rgba(255,255,255,0.02);
+  padding: var(--space-xl);
+  overflow: hidden;
+}
+
+.motion-demo-line::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: calc(100% - 4rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-line-strong), transparent);
+  transform-origin: left center;
+  animation: ct-line-draw var(--dur-xl) var(--ease-cinematic) both;
+}
+
+.motion-demo-blur .demo-word {
+  display: inline-block;
+  animation: ct-blur-resolve var(--dur-xl) var(--ease-cinematic) both;
+}
+
+.motion-demo-zoom .demo-frame {
+  animation: ct-zoom-settle var(--dur-xl) var(--ease-soft) both;
+}
+
+.motion-demo-fade .demo-copy {
+  opacity: 0;
+  transform: translateY(1rem);
+  animation: ct-blur-resolve var(--dur-xl) var(--ease-cinematic) both;
+  filter: blur(0);
+}
+
+/* --------------------------------------------------
+   REDUCED MOTION
+-------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-up,
+  .reveal-up.is-visible,
+  .reveal-blur,
+  .zoom-reveal,
+  .motion-demo-fade .demo-copy,
+  .motion-demo-blur .demo-word,
+  .motion-demo-zoom .demo-frame {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .sweep-overlay,
+  .signal-surface::after,
+  .pulse-node::after {
+    animation: none !important;
+  }
+}

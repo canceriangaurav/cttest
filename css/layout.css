@@ -1,0 +1,169 @@
+@import url('./system.css');
+
+/* -----------------------------------
+   GLOBAL SHELL
+----------------------------------- */
+.site-shell {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+.site-stars,
+.site-canvas,
+.site-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.site-stars {
+  z-index: var(--z-stars);
+}
+
+.site-canvas {
+  z-index: var(--z-canvas);
+}
+
+.site-overlay {
+  z-index: var(--z-overlay);
+}
+
+.page-main {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+/* -----------------------------------
+   SECTION WRAPPERS
+----------------------------------- */
+.section {
+  position: relative;
+  padding: var(--section-pad-y) var(--section-pad-x);
+}
+
+.section--flush-top {
+  padding-top: 0;
+}
+
+.section--tight {
+  padding-block: var(--space-3xl);
+}
+
+.section--viewport {
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+}
+
+/* -----------------------------------
+   CONTAINERS
+----------------------------------- */
+.container {
+  width: min(100% - (var(--section-pad-x) * 2), var(--container-lg));
+  margin-inline: auto;
+}
+
+.container--sm {
+  max-width: var(--container-sm);
+}
+
+.container--md {
+  max-width: var(--container-md);
+}
+
+.container--xl {
+  max-width: var(--container-xl);
+}
+
+/* -----------------------------------
+   FLOW / STACK / CLUSTER
+----------------------------------- */
+.stack > * + * {
+  margin-top: var(--space-lg);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+/* -----------------------------------
+   GRID PRIMITIVES
+----------------------------------- */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid--cards {
+  grid-template-columns: 1fr;
+}
+
+.grid--team {
+  grid-template-columns: 1fr;
+}
+
+.grid--gallery {
+  grid-template-columns: 1fr;
+}
+
+/* -----------------------------------
+   HERO LAYOUT PRIMITIVES
+----------------------------------- */
+.hero-shell {
+  min-height: 100vh;
+  display: grid;
+  align-items: end;
+  padding: calc(var(--space-5xl) + var(--space-xl)) var(--section-pad-x) var(--space-3xl);
+}
+
+.hero-layout {
+  width: min(100% - (var(--section-pad-x) * 2), var(--container-xl));
+  margin-inline: auto;
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.media-frame {
+  position: relative;
+  overflow: clip;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-line);
+  background: var(--gradient-glass);
+  box-shadow: var(--shadow-deep);
+}
+
+.media-frame--ratio {
+  aspect-ratio: 16 / 10;
+}
+
+/* -----------------------------------
+   RESPONSIVE
+----------------------------------- */
+@media (min-width: 48rem) {
+  .grid--cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--team {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-layout {
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: end;
+  }
+}
+
+@media (min-width: 72rem) {
+  .grid--cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--gallery {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}

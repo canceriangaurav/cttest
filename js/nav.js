@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuVideo = mobileMenu?.querySelector('.ct-mobile-menu__bg') || null;
   const mobileMenuVideoSource = mobileMenuVideo?.querySelector('source') || null;
 
-  const transitionLayer = document.getElementById('ctPageTransition');
-  const transitionVideo = transitionLayer?.querySelector('.ct-page-transition__video');
-
   const desktopLeft = document.querySelector('.ct-nav__desktop--left');
   const desktopRight = document.querySelector('.ct-nav__desktop--right');
 
@@ -41,80 +38,33 @@ document.addEventListener('DOMContentLoaded', () => {
       if (promise && typeof promise.catch === 'function') {
         promise.catch(() => {});
       }
-    } catch (e) {}
+    } catch (e) {
+      // no-op
+    }
   };
 
   const pauseMobileMenuVideo = () => {
     try {
       mobileMenuVideo?.pause();
-    } catch (e) {}
+    } catch (e) {
+      // no-op
+    }
   };
 
   mobileMenu?.setAttribute('inert', '');
 
-  const hideTransition = () => {
-    if (!transitionLayer) return;
-    transitionLayer.classList.remove('is-entering', 'is-leaving');
-    transitionLayer.classList.add('is-hidden');
-    body.classList.remove('is-transitioning');
-  };
+  const navigateTo = (url) => {
+    if (!url || url === '#') return;
 
-  const showLeaveTransition = (url) => {
-    if (!url) return;
-
-    if (!transitionLayer) {
-      window.location.href = url;
-      return;
-    }
-
-    body.classList.add('is-transitioning');
     body.classList.remove('nav-open');
     pauseMobileMenuVideo();
-
-    transitionLayer.classList.remove('is-hidden', 'is-entering');
-    transitionLayer.classList.add('is-leaving');
-
-    if (transitionVideo) {
-      try {
-        transitionVideo.currentTime = 0;
-        transitionVideo.play().catch(() => {});
-      } catch (e) {}
-    }
-
-    setTimeout(() => {
-      window.location.href = url;
-    }, 520);
+    window.location.href = url;
   };
 
-  if (transitionLayer) {
-    body.classList.add('is-transitioning');
-
-    if (transitionVideo) {
-      try {
-        transitionVideo.currentTime = 0;
-        transitionVideo.play().catch(() => {});
-      } catch (e) {}
-    }
-
-    const enterTimer = setTimeout(() => {
-      hideTransition();
-    }, 1200);
-
-    transitionVideo?.addEventListener('ended', () => {
-      clearTimeout(enterTimer);
-      hideTransition();
-    });
-
-    transitionVideo?.addEventListener('error', () => {
-      clearTimeout(enterTimer);
-      hideTransition();
-    });
-  }
-
   const setDesktopFocusMode = (activeGroup) => {
-    [desktopLeft, desktopRight].forEach(side => side?.classList.add('is-focus-mode'));
+    [desktopLeft, desktopRight].forEach((side) => side?.classList.add('is-focus-mode'));
 
-    allDesktopGroups.forEach(group => {
+    allDesktopGroups.forEach((group) => {
       group.classList.remove('is-open');
     });
 
@@ -122,29 +72,29 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const clearDesktopFocusMode = () => {
-    [desktopLeft, desktopRight].forEach(side => side?.classList.remove('is-focus-mode'));
+    [desktopLeft, desktopRight].forEach((side) => side?.classList.remove('is-focus-mode'));
 
-    allDesktopGroups.forEach(group => {
+    allDesktopGroups.forEach((group) => {
       group.classList.remove('is-open');
     });
   };
 
   const clearMobileFocusMode = () => {
-    mobilePlanets.forEach(planet => {
+    mobilePlanets.forEach((planet) => {
       planet.classList.remove('is-dimmed', 'is-active-parent');
     });
 
-    mobileSocialAsteroids.forEach(planet => {
+    mobileSocialAsteroids.forEach((planet) => {
       planet.classList.remove('is-dimmed');
     });
 
-    mobileChildren.forEach(child => {
+    mobileChildren.forEach((child) => {
       child.classList.remove('is-open', 'is-dimmed');
     });
   };
 
   const setMobileFocusMode = (activePlanet, parentKey) => {
-    mobilePlanets.forEach(planet => {
+    mobilePlanets.forEach((planet) => {
       if (planet === activePlanet) {
         planet.classList.add('is-active-parent');
         planet.classList.remove('is-dimmed');
@@ -154,11 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    mobileSocialAsteroids.forEach(planet => {
+    mobileSocialAsteroids.forEach((planet) => {
       planet.classList.add('is-dimmed');
     });
 
-    mobileChildren.forEach(child => {
+    mobileChildren.forEach((child) => {
       if (child.dataset.childOf === parentKey) {
         child.classList.add('is-open');
         child.classList.remove('is-dimmed');
@@ -169,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  desktopGroups.forEach(group => {
+  desktopGroups.forEach((group) => {
     const trigger = group.querySelector('.ct-planet--main');
     const submenu = group.querySelector('.ct-subplanets');
 
@@ -278,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   mobileClose?.addEventListener('click', closeMenu);
 
-  mobilePlanets.forEach(planet => {
+  mobilePlanets.forEach((planet) => {
     planet.addEventListener('click', () => {
       const parentKey = planet.dataset.parent;
       const link = planet.dataset.link;
@@ -294,31 +244,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      if (link && link !== '#') {
-        showLeaveTransition(link);
-      }
+      navigateTo(link);
     });
   });
 
-  mobileChildren.forEach(child => {
+  mobileChildren.forEach((child) => {
     child.addEventListener('click', (e) => {
       const href = child.getAttribute('href');
       if (!href || href === '#') return;
       e.preventDefault();
-      showLeaveTransition(href);
+      navigateTo(href);
     });
   });
 
-  document.querySelectorAll('a[href]').forEach(link => {
+  document.querySelectorAll('a[href]').forEach((link) => {
     const href = link.getAttribute('href');
-    const isExternal = link.target === '_blank' || href?.startsWith('http') || href?.startsWith('mailto:') || href?.startsWith('tel:');
+    const isExternal =
+      link.target === '_blank' ||
+      href?.startsWith('http') ||
+      href?.startsWith('mailto:') ||
+      href?.startsWith('tel:');
 
     if (!href || href === '#' || isExternal) return;
 
     link.addEventListener('click', (e) => {
       if (link.closest('.ct-mobile-menu')) return;
+
+      // Let desktop parent items with children open first instead of navigating immediately
+      const group = link.closest('.ct-planet-group--has-children');
+      if (group && !group.classList.contains('is-open')) return;
+
       e.preventDefault();
-      showLeaveTransition(href);
+      navigateTo(href);
     });
   });
 
@@ -330,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (e.key === 'Escape') {
       clearDesktopFocusMode();
-      desktopGroups.forEach(group => {
+      desktopGroups.forEach((group) => {
         group.querySelector('.ct-planet--main')?.setAttribute('aria-expanded', 'false');
       });
     }

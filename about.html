@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="gold-night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronotales — About</title>
+  <meta name="description" content="Chronotales system page. Geometry-led cinematic About experience.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="./css/nav.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/audio-modal.css">
+  <link rel="stylesheet" href="./css/contact-modal.css">
+  <link rel="stylesheet" href="./css/pages/about.css">
+</head>
+<body>
+
+  <div data-include="nav"></div>
+
+  <main class="ct-about" id="ctAboutPage">
+    <section class="ct-about-scroll" id="ctAboutScroll">
+      <div class="ct-about-pin" id="ctAboutPin">
+        <div class="ct-about-stage" id="ctAboutStage">
+
+          <div class="ct-about-ambient" aria-hidden="true">
+            <div class="ct-about-ambient__stars"></div>
+            <div class="ct-about-ambient__grain"></div>
+            <div class="ct-about-ambient__halo"></div>
+            <div class="ct-about-ambient__scan"></div>
+          </div>
+
+          <div class="ct-about-scenes" id="ctAboutScenes">
+
+            <section class="ct-about-scene ct-about-scene--1" id="aboutScene1">
+              <div class="ct-about-scene__bg"></div>
+              <div class="ct-about-scene__visual">
+                <canvas class="ct-about-canvas" id="aboutCanvas1"></canvas>
+              </div>
+              <div class="ct-about-scene__content ct-about-copy ct-about-copy--center">
+                <p class="ct-about-copy__eyebrow">Chronotales / About</p>
+                <h1 class="ct-about-copy__title">Most people think<br>we are an agency.<br>We are not.</h1>
+              </div>
+            </section>
+
+            <section class="ct-about-scene ct-about-scene--2" id="aboutScene2">
+              <div class="ct-about-scene__bg"></div>
+              <div class="ct-about-scene__visual">
+                <canvas class="ct-about-canvas" id="aboutCanvas2"></canvas>
+              </div>
+              <div class="ct-about-scene__content ct-about-copy ct-about-copy--left">
+                <p class="ct-about-copy__eyebrow">Rejection / Model</p>
+                <div class="ct-about-copy__stack">
+                  <p>We don’t take briefs.</p>
+                  <p>We don’t deliver fragments.</p>
+                  <p>Because brands don’t break in parts.</p>
+                  <p class="is-strong">They break in systems.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-about-scene ct-about-scene--3" id="aboutScene3">
+              <div class="ct-about-scene__bg"></div>
+              <div class="ct-about-scene__visual">
+                <canvas class="ct-about-canvas" id="aboutCanvas3"></canvas>
+              </div>
+              <div class="ct-about-scene__content ct-about-copy ct-about-copy--center-top">
+                <h2 class="ct-about-copy__title">Chronotales is built as<br>a single thinking layer.</h2>
+                <div class="ct-about-copy__substack">
+                  <p>Not departments.</p>
+                  <p>Not verticals.</p>
+                  <p>Not handoffs.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-about-scene ct-about-scene--4" id="aboutScene4">
+              <div class="ct-about-scene__bg"></div>
+              <div class="ct-about-scene__visual">
+                <canvas class="ct-about-canvas" id="aboutCanvas4"></canvas>
+              </div>
+              <div class="ct-about-scene__content ct-about-copy ct-about-copy--left-wide">
+                <p class="ct-about-copy__eyebrow">Execution Flow</p>
+                <h2 class="ct-about-copy__title">Work does not move<br>step by step.<br>It moves as one<br>continuous structure.</h2>
+              </div>
+            </section>
+
+            <section class="ct-about-scene ct-about-scene--5" id="aboutScene5">
+              <div class="ct-about-scene__bg"></div>
+              <div class="ct-about-scene__visual">
+                <canvas class="ct-about-canvas" id="aboutCanvas5"></canvas>
+              </div>
+              <div class="ct-about-scene__content ct-about-copy ct-about-copy--right">
+                <h2 class="ct-about-copy__title">Ideas don’t fail<br>because they are weak.</h2>
+                <div class="ct-about-copy__substack">
+                  <p>They fail because they change shape</p>
+                  <p>as they move through people.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-about-scene ct-about-scene--6" id="aboutScene6">
+              <div class="ct-about-scene__bg"></div>
+              <div class="ct-about-scene__visual">
+                <canvas class="ct-about-canvas" id="aboutCanvas6"></canvas>
+              </div>
+              <div class="ct-about-scene__content ct-about-copy ct-about-copy--center-mid">
+                <div class="ct-about-copy__stack ct-about-copy__stack--tight">
+                  <p>Strategy is not separate.</p>
+                  <p>Creative is not separate.</p>
+                  <p>Execution is not separate.</p>
+                  <p class="is-strong">They are the same layer.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-about-scene ct-about-scene--7" id="aboutScene7">
+              <div class="ct-about-scene__bg"></div>
+              <div class="ct-about-scene__visual">
+                <canvas class="ct-about-canvas" id="aboutCanvas7"></canvas>
+              </div>
+              <div class="ct-about-scene__content ct-about-copy ct-about-copy--center">
+                <h2 class="ct-about-copy__title">We don’t scale<br>by adding people.</h2>
+                <div class="ct-about-copy__substack">
+                  <p>We scale by keeping thinking consistent.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-about-scene ct-about-scene--8" id="aboutScene8">
+              <div class="ct-about-scene__bg"></div>
+              <div class="ct-about-scene__visual">
+                <canvas class="ct-about-canvas" id="aboutCanvas8"></canvas>
+              </div>
+              <div class="ct-about-scene__content ct-about-copy ct-about-copy--center">
+                <p class="ct-about-copy__eyebrow">What it feels like</p>
+                <div class="ct-about-copy__substack ct-about-copy__substack--experience">
+                  <p>Less explanation</p>
+                  <p>Less correction</p>
+                  <p>Less repetition</p>
+                  <p class="is-strong">And finally — Momentum.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-about-scene ct-about-scene--9" id="aboutScene9">
+              <div class="ct-about-scene__bg"></div>
+              <div class="ct-about-scene__visual">
+                <canvas class="ct-about-canvas" id="aboutCanvas9"></canvas>
+              </div>
+              <div class="ct-about-scene__content ct-about-copy ct-about-copy--center">
+                <h2 class="ct-about-copy__title">If you’re looking for another vendor —<br>this won’t work.</h2>
+                <div class="ct-about-copy__substack">
+                  <p>If you’re looking for alignment —</p>
+                  <p class="is-strong">we should talk.</p>
+                </div>
+
+                <div class="ct-about-cta">
+                  <button type="button" class="ct-about-btn" data-open-enquiry>
+                    Start the Conversation
+                  </button>
+
+                  <a href="domains.html" class="ct-about-btn ct-about-btn--secondary">
+                    Explore Realms
+                  </a>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+          <div class="ct-about-ui">
+            <div class="ct-about-progress">
+              <div class="ct-about-progress__bar" id="aboutProgressBar"></div>
+            </div>
+            <div class="ct-about-debug" id="aboutDebug" hidden></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <div data-include="floating-ui"></div>
+  <div data-include="audio-modal"></div>
+  <div data-include="enquiry-modal"></div>
+
+  <script src="./js/core/includes.js"></script>
+
+  <script>
+    document.addEventListener('chronotales:partials-loaded', () => {
+      const yearNode = document.querySelector('[data-year]');
+      if (yearNode) yearNode.textContent = new Date().getFullYear();
+
+      const scripts = [
+        './js/nav.js',
+        './js/site-ui.js',
+        './js/contact-modal.js'
+      ];
+
+      scripts.forEach((src) => {
+        const s = document.createElement('script');
+        s.src = src;
+        document.body.appendChild(s);
+      });
+
+      const audioScript = document.createElement('script');
+      audioScript.type = 'module';
+      audioScript.src = './js/audio.js';
+      document.body.appendChild(audioScript);
+
+      const aboutScript = document.createElement('script');
+      aboutScript.type = 'module';
+      aboutScript.src = './js/about/about.master.js';
+      document.body.appendChild(aboutScript);
+    });
+  </script>
+
+</body>
+</html>

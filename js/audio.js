@@ -70,7 +70,7 @@ export function playSound(audio, volume = null) {
    AUDIO APP
 --------------------------------------- */
 
-document.addEventListener('DOMContentLoaded', () => {
+function bootAudio() {
   const soundToggle = document.getElementById('soundToggle');
   const soundToggleIcon = soundToggle?.querySelector('.ct-sound-toggle__icon');
 
@@ -269,7 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
   bindUI();
   restorePreference();
 
-  // Optional UI micro sounds
   document.addEventListener(
     'pointerenter',
     (event) => {
@@ -284,6 +283,11 @@ document.addEventListener('DOMContentLoaded', () => {
         target.closest('.ct-audio-modal__button')
       ) {
         playSound(sounds.cardHover);
+        return;
+      }
+
+      if (target.closest('.ct-btn')) {
+        playSound(sounds.ctaHover);
       }
     },
     true
@@ -302,14 +306,15 @@ document.addEventListener('DOMContentLoaded', () => {
         target.closest('.ct-social-asteroid')
       ) {
         playSound(sounds.ctaClick);
+        return;
+      }
+
+      if (target.closest('.ct-btn')) {
+        playSound(sounds.ctaClick);
       }
     },
     true
   );
-
-  /* ---------------------------------------
-     GLOBAL API FOR originMain.js
-  --------------------------------------- */
 
   window.__chronotalesAudio = {
     isEnabled() {
@@ -346,6 +351,24 @@ document.addEventListener('DOMContentLoaded', () => {
       startSceneLoops();
     },
 
+    syncScene4(progress, phase = '') {
+      state.currentScene = 'Scene 4';
+      if (!state.enabled) return;
+      startSceneLoops();
+    },
+
+    syncScene5(progress, phase = '') {
+      state.currentScene = 'Scene 5';
+      if (!state.enabled) return;
+      startSceneLoops();
+    },
+
+    play(name, volume = null) {
+      if (!state.enabled) return;
+      if (!name || !sounds[name]) return;
+      playSound(sounds[name], volume);
+    },
+
     mute() {
       muteAll();
     },
@@ -353,5 +376,11 @@ document.addEventListener('DOMContentLoaded', () => {
     async unmute() {
       await unmuteAll();
     }
-  };
-});
+    };
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootAudio, { once: true });
+} else {
+  bootAudio();
+}

@@ -1,0 +1,21 @@
+.ct-thankyou {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.ct-thankyou__inner {
+  max-width: 600px;
+}
+
+.ct-thankyou h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.ct-thankyou p {
+  margin-bottom: 24px;
+}

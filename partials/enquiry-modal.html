@@ -1,0 +1,81 @@
+
+<div class="ct-enquiry-modal" id="enquiryModal" aria-hidden="true">
+  <div class="ct-enquiry-modal__backdrop"></div>
+
+  <div
+    class="ct-enquiry-modal__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="enquiryModalTitle"
+  >
+    <button
+      class="ct-enquiry-modal__close"
+      id="closeEnquiry"
+      type="button"
+      aria-label="Close enquiry form"
+    >
+      ×
+    </button>
+
+    <p class="ct-enquiry-modal__eyebrow">Chronotales</p>
+    <h2 class="ct-enquiry-modal__title" id="enquiryModalTitle">Let’s Fix Your Brand</h2>
+    <p class="ct-enquiry-modal__text">
+      Tell us what you need help with and we’ll connect with you.
+    </p>
+
+    <form class="ct-enquiry-form">
+      <div class="ct-enquiry-form__grid">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          autocomplete="name"
+        >
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          required
+          autocomplete="email"
+        >
+
+        <input
+          type="text"
+          name="company_website"
+          class="ct-hidden-field"
+          autocomplete="off"
+          tabindex="-1"
+        >
+      </div>
+
+      <div class="ct-enquiry-form__grid">
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone Number"
+          autocomplete="tel"
+        >
+
+        <input
+          type="text"
+          name="company"
+          placeholder="Company / Brand Name"
+          autocomplete="organization"
+        >
+      </div>
+
+      <textarea
+        name="message"
+        rows="5"
+        placeholder="What do you need help with?"
+        autocomplete="on"
+      ></textarea>
+
+      <button type="submit" class="ct-btn ct-btn--primary">
+        Submit Enquiry
+      </button>
+    </form>
+  </div>
+</div>

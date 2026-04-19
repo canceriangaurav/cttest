@@ -23,13 +23,12 @@ body {
 
 .origin-cinematic {
   position: relative;
-  height: 1560svh;
+  min-height: 100svh;
   background: var(--color-bg);
 }
 
 .origin-cinematic__scroll {
-  position: sticky;
-  top: 0;
+  position: relative;
   height: 100svh;
   overflow: hidden;
 }
@@ -104,7 +103,6 @@ body {
   position: absolute;
   top: 30%;
   left: 50%;
-  transform: translateX(-50%);
   width: min(92%, 52rem);
   margin: 0;
   text-align: center;
@@ -123,7 +121,6 @@ body {
 .hero-title-bottom {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
   width: 100%;
   margin: 0;
   text-align: center;
@@ -142,6 +139,7 @@ body {
   font-size: clamp(4rem, 10vw, 10rem);
   color: var(--color-text);
 }
+
 
 .hero-media-wrap {
   position: absolute;
@@ -185,7 +183,6 @@ body {
   position: absolute;
   left: 50%;
   top: 78%;
-  transform: translateX(-50%);
   width: min(88%, 42rem);
   margin: 0;
   text-align: center;
@@ -210,6 +207,7 @@ body {
 }
 
 .origin-scene-tv__stage {
+  top: 4%;
   position: relative;
   width: 100%;
   height: 100%;
@@ -1134,6 +1132,7 @@ body {
    Edit here if text feels too low or too high.
 ----------------------------------------- */
 .origin-orbit__copydock {
+  top: 70%;
   position: absolute;
   left: 50%;
   bottom: clamp(110px, 4vh, 42px);
@@ -1405,12 +1404,12 @@ body {
   }
 
   .origin-orbit__title {
-    font-size: clamp(1.05rem, 5vw, 1.45rem);
+    font-size: clamp(2rem, 5vw, 2rem);
     line-height: 1.02;
   }
 
   .origin-orbit__support {
-    font-size: 0.84rem;
+    font-size: 1.4rem;
     line-height: 1.38;
   }
 
@@ -1436,13 +1435,375 @@ body {
     letter-spacing: 0.08em;
   }
 }
+
+@media (max-width: 680px) {
+
+  .origin-orbit__frame-wrap {
+    padding: 68px 10px 150px;
+  }
+
+  .origin-orbit__frame {
+    width: 94vw;
+    height: min(34vh, 280px);
+    border-radius: 18px;
+  }
+
+  .origin-orbit__core-glow--outer {
+    width: 150px;
+    height: 150px;
+  }
+
+  .origin-orbit__core-glow--inner {
+    width: 62px;
+    height: 62px;
+  }
+
+  .origin-orbit__logo {
+    width: 52px;
+    min-width: 52px;
+  }
+
+  .origin-orbit__copydock {
+    width: 92vw;
+    bottom: clamp(150px, 20vh, 42px);
+  }
+
+  .origin-orbit__title {
+    font-size: clamp(2rem, 5vw, 2rem);
+    line-height: 1.02;
+  }
+
+  .origin-orbit__support {
+    font-size: 1.4rem;
+    line-height: 1.38;
+  }
+
+  .origin-orbit-planet__orb {
+    width: 14px;
+    height: 14px;
+  }
+
+  .origin-orbit-planet__label {
+    top: calc(50% + 16px);
+    font-size: 0.56rem;
+    letter-spacing: 0.06em;
+  }
+
+  .origin-orbit-realm__orb {
+    width: 32px;
+    height: 32px;
+  }
+
+  .origin-orbit-realm__label {
+    top: calc(50% + 22px);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 912px) {
+  .origin-orbit__copydock {
+    bottom: clamp(300px, 20vh, 42px);
+  }
+
+   .origin-orbit__title {
+    font-size: clamp(2.5rem, 5vw, 3rem);
+    line-height: 1.02;
+  }
+
+  .origin-orbit__support {
+    font-size: 2rem;
+    line-height: 1.38;
+  }
+
+}
+
 /* =========================================
    SCENE 4 — ORBIT END
 ========================================= */
+/* =========================================================
+   Scene 5 — Alignment Outcomes
+   ========================================================= */
+.origin-layer--scene-5 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.origin-scene5 {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(244, 211, 106, 0.06), transparent 20%),
+    linear-gradient(180deg, rgba(8, 8, 8, 0.18), rgba(4, 4, 4, 0.62));
+}
+
+.origin-scene5__screen {
+  position: relative;
+  width: min(1200px, calc(100vw - 48px));
+  height: min(760px, calc(100vh - 56px));
+  border-radius: 28px;
+  border: 1px solid rgba(244, 211, 106, 0.14);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(244, 211, 106, 0.06), transparent 22%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.28), rgba(5, 5, 5, 0.68));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 24px 80px rgba(0, 0, 0, 0.48);
+  overflow: hidden;
+}
+
+.origin-scene5__ambient {
+  position: absolute;
+  inset: -10%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(244, 211, 106, 0.11), transparent 16%),
+    radial-gradient(circle at 35% 60%, rgba(244, 211, 106, 0.04), transparent 18%),
+    radial-gradient(circle at 70% 28%, rgba(255, 255, 255, 0.03), transparent 16%);
+  filter: blur(24px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.origin-scene5__flow {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 56px 40px;
+}
+
+.origin-scene5__kicker {
+  margin: 0 0 16px;
+  color: rgba(244, 211, 106, 0.78);
+  font-size: 12px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+.origin-scene5__headline {
+  margin: 0 0 14px;
+  max-width: 12ch;
+  color: #f3eee2;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(35px, 7vw, 86px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.origin-scene5__stats {
+  display: none;
+  width: min(1080px, 100%);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 0 0 14px;
+}
+
+.origin-scene5-stat {
+  min-height: 176px;
+  padding: 26px 24px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(244, 211, 106, 0.10);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.005)),
+    rgba(8, 8, 8, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.02),
+    0 18px 44px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.origin-scene5-stat__value {
+  display: block;
+  margin-bottom: 12px;
+  font-size: clamp(60px, 7vw, 88px);
+  font-weight: 300;
+  line-height: 0.86;
+  letter-spacing: -0.09em;
+  color: #f3eee2;
+}
+
+.origin-scene5-stat__label {
+  display: block;
+  max-width: 14ch;
+  margin: 0 auto;
+  text-align: center;
+  color: rgba(243, 238, 226, 0.58);
+  font-size: 14px;
+  line-height: 1.34;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.origin-scene5__follow {
+  margin: 0;
+  max-width: 34ch;
+  color: rgba(243, 238, 226, 0.64);
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.42;
+  text-wrap: balance;
+}
+
+/* proof state: heading hidden, stats shown */
+.origin-scene5.is-proof .origin-scene5__headline {
+  display: none;
+}
+
+.origin-scene5.is-proof .origin-scene5__stats {
+  display: grid;
+}
+
+@media (max-width: 1100px) {
+  .origin-scene5__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .origin-scene5__screen {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
+    border-radius: 22px;
+  }
 
 
+  .origin-scene5__flow {
+    padding: 18px 14px;
+    justify-content: flex-start;
+    transform: translateY(220px);
+    
+  }
 
+  .origin-scene5__kicker {
+    margin: 0 0 10px;
+    font-size: 15px;
+    letter-spacing: 0.28em;
+    line-height: 1.25;
+    max-width: 24ch;
+  }
 
+  .origin-scene5__headline {
+    max-width: 9ch;
+    font-size: clamp(34px, 9.5vw, 52px);
+    line-height: 0.94;
+    margin: 0 0 10px;
+  }
+
+  .origin-scene5__stats {
+    width: 100%;
+    gap: 10px;
+    margin: 0 0 12px;
+  }
+
+  .origin-scene5-stat {
+    min-height: 132px;
+    padding: 14px 10px;
+    border-radius: 18px;
+  }
+
+  .origin-scene5-stat__value {
+    font-size: clamp(40px, 10vw, 54px);
+    margin-bottom: 6px;
+  }
+
+  .origin-scene5-stat__label {
+    font-size: 15px;
+    line-height: 1.2;
+    max-width: 10ch;
+  }
+
+  .origin-scene5__follow {
+    max-width: 24ch;
+    font-size: 20px;
+    line-height: 1.24;
+  }
+}
+/* =========================================
+   Scene 5 — Alignment Outcomes END
+========================================= */
+/* =========================================
+   CTA SECTION — POST CINEMATIC
+========================================= */
+/* =========================================
+   CTA SECTION — POST CINEMATIC
+========================================= */
+
+.ct-cta {
+  position: relative;
+  padding: clamp(110px, 16vh, 180px) 20px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(244,211,106,0.08), transparent 28%),
+    linear-gradient(180deg, #050505 0%, #030303 100%);
+  text-align: center;
+}
+
+.ct-cta__inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ct-cta__headline {
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.ct-cta__subtext {
+  margin-bottom: 40px;
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  color: var(--color-text-dim);
+}
+
+.ct-cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ct-btn {
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.ct-btn--primary {
+  background: var(--color-accent);
+  color: #050505;
+}
+
+.ct-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(244,211,106,0.25);
+}
+
+.ct-btn--ghost {
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--color-text);
+}
+
+.ct-btn--ghost:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+/* =========================================
+   CTA SECTION END
+========================================= */
 /* =========================================
    UI
 ========================================= */

@@ -16,119 +16,19 @@
   <link rel="stylesheet" href="./css/nav.css">
   <link rel="stylesheet" href="./css/pages/origin.css">
   <link rel="stylesheet" href="./css/audio-modal.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/contact-modal.css">
 </head>
 <body>
 
-<div class="ct-page-transition is-entering" id="ctPageTransition" aria-hidden="true">
-  <video class="ct-page-transition__video" muted playsinline preload="auto">
-    <source src="./assets/videos/transition.webm" type="video/webm">
-  </video>
-  <div class="ct-page-transition__fallback"></div>
-</div>
-
-<header class="ct-nav" aria-label="Primary">
-  <div class="ct-nav__bar">
-    <nav class="ct-nav__desktop ct-nav__desktop--left" aria-label="Primary pages">
-      <div class="ct-planet-group">
-        <a class="ct-planet ct-planet--main" href="index.html" data-label="Origin">Origin</a>
-      </div>
-
-      <div class="ct-planet-group">
-        <a class="ct-planet ct-planet--main" href="about.html" data-label="System">System</a>
-      </div>
-
-      <div class="ct-planet-group ct-planet-group--has-children" data-parent="realms">
-        <a class="ct-planet ct-planet--main ct-planet--has-children" href="domains.html" data-label="Realms" aria-expanded="false">
-          <span class="ct-planet__text">Realms</span>
-          <span class="ct-planet__plus" aria-hidden="true">+</span>
-        </a>
-        <div class="ct-subplanets" aria-label="Realms subpages">
-          <a class="ct-planet ct-planet--sub" href="creative.html">Creative</a>
-          <a class="ct-planet ct-planet--sub" href="#">Digital</a>
-          <a class="ct-planet ct-planet--sub" href="#">Strategy</a>
-          <a class="ct-planet ct-planet--sub" href="#">Physical</a>
-        </div>
-      </div>
-
-      <div class="ct-planet-group">
-        <a class="ct-planet ct-planet--main" href="#" data-label="Chronicles">Chronicles</a>
-      </div>
-    </nav>
-
-    <a class="ct-nav__brand" href="index.html" aria-label="Chronotales Origin">
-      <img src="./assets/images/logo.webp" alt="Chronotales logo">
-    </a>
-
-    <div class="ct-nav__desktop ct-nav__desktop--right">
-      <div class="ct-planet-group">
-        <a class="ct-planet ct-planet--main" href="#" data-label="Scroll">Scroll</a>
-      </div>
-
-      <div class="ct-planet-group">
-        <a class="ct-planet ct-planet--main" href="#" data-label="Connect">Connect</a>
-      </div>
-
-      <div class="ct-planet-group ct-planet-group--has-children" data-parent="social">
-        <button class="ct-planet ct-planet--main ct-planet--has-children ct-planet--socialhub" type="button" aria-expanded="false">
-          <span class="ct-planet__text">Social</span>
-          <span class="ct-planet__plus" aria-hidden="true">+</span>
-        </button>
-        <div class="ct-subplanets ct-subplanets--social" aria-label="Social links">
-          <a class="ct-planet ct-planet--sub ct-planet--icon" href="https://www.facebook.com/chronotalespvtltd/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
-          <a class="ct-planet ct-planet--sub ct-planet--icon" href="https://www.youtube.com/@chronotalespvtltd" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
-          <a class="ct-planet ct-planet--sub ct-planet--icon" href="https://www.linkedin.com/company/chronotales/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
-          <a class="ct-planet ct-planet--sub ct-planet--icon" href="https://www.instagram.com/chronotalesindia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">i</a>
-        </div>
-      </div>
-    </div>
-
-    <button class="ct-nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="ct-mobile-menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-
-  <div class="ct-mobile-menu" id="ct-mobile-menu" aria-hidden="true">
-    <video class="ct-mobile-menu__bg" muted loop playsinline preload="none">
-      <source src="./assets/videos/cosmic-stars-placeholder.webm" type="video/webm">
-    </video>
-    <div class="ct-mobile-menu__bg-fallback"></div>
-    <div class="ct-mobile-menu__warp"></div>
-
-    <button class="ct-mobile-menu__close" type="button" aria-label="Close menu">
-      <span></span><span></span>
-    </button>
-
-    <div class="ct-mobile-menu__center">
-      <img src="./assets/images/logo.webp" alt="Chronotales logo">
-    </div>
-
-    <div class="ct-mobile-orbit">
-      <button class="ct-mobile-planet ct-mobile-planet--page" data-link="index.html" data-label="Origin" style="--x:30vw; --y:35vh; --d:0s;">Origin</button>
-      <button class="ct-mobile-planet ct-mobile-planet--page" data-link="about.html" data-label="System" style="--x:18vw; --y:48vh; --d:0.7s;">System</button>
-      <button class="ct-mobile-planet ct-mobile-planet--page ct-mobile-planet--has-children" data-link="domains.html" data-parent="realms" data-label="Realms" style="--x:68vw; --y:35vh; --d:1.1s;"><span>Realms</span><span class="ct-mobile-planet__plus">+</span></button>
-      <button class="ct-mobile-planet ct-mobile-planet--page" data-link="#" data-label="Chronicles" style="--x:80vw; --y:50vh; --d:1.8s;">Chronicles</button>
-      <button class="ct-mobile-planet ct-mobile-planet--page" data-link="#" data-label="Scroll" style="--x:28vw; --y:62vh; --d:2.2s;">Scroll</button>
-      <button class="ct-mobile-planet ct-mobile-planet--page" data-link="#" data-label="Connect" style="--x:75vw; --y:63vh; --d:2.7s;">Connect</button>
-
-      <a class="ct-mobile-child" data-child-of="realms" href="creative.html" style="--x:72vw; --y:22vh;">Creative</a>
-      <a class="ct-mobile-child" data-child-of="realms" href="#" style="--x:88vw; --y:30vh;">Digital</a>
-      <a class="ct-mobile-child" data-child-of="realms" href="#" style="--x:88vw; --y:40vh;">Strategy</a>
-      <a class="ct-mobile-child" data-child-of="realms" href="#" style="--x:68vw; --y:45vh;">Physical</a>
-    </div>
-
-    <div class="ct-mobile-social-field">
-      <a class="ct-social-asteroid" href="https://www.facebook.com/chronotalespvtltd/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="--x:75vw; --y:80vh; --d:0s;">f</a>
-      <a class="ct-social-asteroid" href="https://www.youtube.com/@chronotalespvtltd" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="--x:42vw; --y:80vh; --d:1.3s;">▶</a>
-      <a class="ct-social-asteroid" href="https://www.linkedin.com/company/chronotales/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="--x:59vw; --y:80vh; --d:2.2s;">in</a>
-      <a class="ct-social-asteroid" href="https://www.instagram.com/chronotalesindia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="--x:25vw; --y:80vh; --d:3.1s;">i</a>
-    </div>
-  </div>
-</header>
+<div data-include="nav"></div>
 
 <main>
   <section class="origin-cinematic" id="origin-cinematic">
     <div class="origin-cinematic__scroll">
       <div class="origin-cinematic__stage">
+
+        <div class="origin-cinematic__fade" id="originFade"></div>
 
         <div class="origin-layer origin-layer--scene-1" id="origin-scene-1-layer">
           <div class="hero-origin" id="heroOrigin">
@@ -163,15 +63,15 @@
             <div class="origin-scene-tv__media" id="tvMedia">
               <div class="tv-screen-video-wrap" id="tvGeo">
                 <video
-  class="tv-screen-video"
-  id="tvSceneVideo"
-  muted
-  loop
-  playsinline
-  preload="none"
-  aria-hidden="true"
-  data-src="./assets/videos/ct_bird.webm"
-></video>
+                  class="tv-screen-video"
+                  id="tvSceneVideo"
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  aria-hidden="true"
+                  data-src="./assets/videos/ct_bird.webm"
+                ></video>
 
                 <div class="tv-screen-video__overlay" id="tvGeoGrid"></div>
                 <div class="tv-screen-video__glow" id="tvGeoOrb"></div>
@@ -183,143 +83,227 @@
             <div class="origin-scene-copy-block" id="tvCopy"></div>
           </div>
         </div>
-<!-- Scene 3 is a projector scene.-->
+
+        <!-- Scene 3 -->
         <div class="origin-layer origin-layer--scene-3" id="origin-scene-3-layer">
-  <section class="projector-scene" id="projectorScene">
-<div class="projector-beam" id="projectorBeam"></div>
-    <div class="projector-dust" id="projectorDust"></div>
-    <div class="projector-scene__inner">
+          <section class="projector-scene" id="projectorScene">
+            <div class="projector-beam" id="projectorBeam"></div>
+            <div class="projector-dust" id="projectorDust"></div>
+            <div class="projector-scene__inner">
 
-      <div class="projector-scene__left">
-        <img
-          src="./assets/images/projector.webp"
-          alt="Vintage film projector"
-          class="projector-scene__projector"
-          id="projectorImage"
-        >
+              <div class="projector-scene__left">
+                <img
+                  src="./assets/images/projector.webp"
+                  alt="Vintage film projector"
+                  class="projector-scene__projector"
+                  id="projectorImage"
+                >
+              </div>
+
+              <div class="projector-scene__right">
+                <div class="projector-screen-shell">
+                  <div class="projector-screen" id="projectorScreen">
+                    <div class="projector-screen__base"></div>
+                    <div class="projector-screen__glow" id="projectorScreenGlow"></div>
+                    <div class="projector-screen__noise"></div>
+                    <div class="projector-screen__falloff"></div>
+
+                    <div class="projector-screen__content">
+                      <div class="projector-act projector-act--1" data-act="0">
+                        <h2>Website. Social. Print. Events.</h2>
+                      </div>
+
+                      <div class="projector-act projector-act--2" data-act="1">
+                        <h2>Nothing matches.</h2>
+                      </div>
+
+                      <div class="projector-act projector-act--3" data-act="2">
+                        <h2>Too many people.</h2>
+                        <p>Too many directions.</p>
+                      </div>
+
+                      <div class="projector-act projector-act--4" data-act="3">
+                        <h2>What if it all just worked?</h2>
+                      </div>
+
+                      <div class="projector-act projector-act--5" data-act="4">
+                        <h2>One vision. One story.</h2>
+                      </div>
+
+                      <div class="projector-act projector-act--6" data-act="5">
+                        <h2>Everything. In sync.</h2>
+                        <p>Chronotales</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+        </div>
+
+        <!-- Scene 4 -->
+        <div class="origin-layer origin-layer--scene-4" id="origin-scene-4-layer">
+          <section class="origin-orbit-scene" id="originOrbitScene" aria-label="Chronotales orbit scene">
+            <div class="origin-orbit__ambient" id="originOrbitAmbient"></div>
+
+            <div class="origin-orbit__frame-wrap">
+              <div class="origin-orbit__frame" id="originOrbitFrame">
+                <div class="origin-orbit__frame-vignette"></div>
+                <div class="origin-orbit__frame-glow"></div>
+
+                <svg class="origin-orbit__connections" id="originOrbitConnections" aria-hidden="true"></svg>
+
+                <div class="origin-orbit__planets" id="originOrbitPlanets" aria-hidden="true"></div>
+                <div class="origin-orbit__realms" id="originOrbitRealms" aria-hidden="true"></div>
+
+                <div class="origin-orbit__core" id="originOrbitCore">
+                  <div class="origin-orbit__core-glow origin-orbit__core-glow--outer" id="originOrbitGlowOuter"></div>
+                  <div class="origin-orbit__core-glow origin-orbit__core-glow--inner" id="originOrbitGlowInner"></div>
+
+                  <img
+                    src="./assets/images/logo.webp"
+                    id="originOrbitLogo"
+                    class="origin-orbit__logo"
+                    alt="Chronotales logo"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="origin-orbit__copydock">
+              <h2 class="origin-orbit__title" id="originOrbitActTitle">One vision.</h2>
+              <p class="origin-orbit__support" id="originOrbitSupport">Everything begins here.</p>
+            </div>
+          </section>
+        </div>
+
+        <!-- Scene 5 -->
+        <div class="origin-layer origin-layer--scene-5" id="origin-scene-5-layer">
+          <section class="origin-scene5" id="originScene5" aria-label="Alignment outcomes">
+            <div class="origin-scene5__screen">
+              <div class="origin-scene5__ambient"></div>
+
+              <div class="origin-scene5__flow">
+                <p class="origin-scene5__kicker" id="originScene5Kicker">WHEN EVERYTHING ALIGNS...</p>
+
+                <h2 class="origin-scene5__headline" id="originScene5Headline">LESS MANAGING.</h2>
+
+                <div class="origin-scene5__stats" id="originScene5Stats" aria-hidden="true">
+                  <article class="origin-scene5-stat">
+                    <span class="origin-scene5-stat__value">20+</span>
+                    <span class="origin-scene5-stat__label">Years of combined expertise</span>
+                  </article>
+
+                  <article class="origin-scene5-stat">
+                    <span class="origin-scene5-stat__value">4</span>
+                    <span class="origin-scene5-stat__label">Unified realms</span>
+                  </article>
+
+                  <article class="origin-scene5-stat">
+                    <span class="origin-scene5-stat__value">1</span>
+                    <span class="origin-scene5-stat__label">Single point of contact</span>
+                  </article>
+
+                  <article class="origin-scene5-stat">
+                    <span class="origin-scene5-stat__value">∞</span>
+                    <span class="origin-scene5-stat__label">Cohesive possibilities</span>
+                  </article>
+                </div>
+
+                <p class="origin-scene5__follow" id="originScene5Follow">
+                  One conversation. One direction. No chasing.
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+
       </div>
-
-      <div class="projector-scene__right">
-  <div class="projector-screen-shell">
-    <div class="projector-screen" id="projectorScreen">
-      <div class="projector-screen__base"></div>
-      <div class="projector-screen__glow" id="projectorScreenGlow"></div>
-      <div class="projector-screen__noise"></div>
-      <div class="projector-screen__falloff"></div>
-
-      <div class="projector-screen__content">
-        <div class="projector-act projector-act--1" data-act="0">
-          <h2>Website. Social. Print. Events.</h2>
-        </div>
-
-        <div class="projector-act projector-act--2" data-act="1">
-          <h2>Nothing matches.</h2>
-        </div>
-
-        <div class="projector-act projector-act--3" data-act="2">
-          <h2>Too many people.</h2>
-          <p>Too many directions.</p>
-        </div>
-
-        <div class="projector-act projector-act--4" data-act="3">
-          <h2>What if it all just worked?</h2>
-        </div>
-
-        <div class="projector-act projector-act--5" data-act="4">
-          <h2>One vision. One story.</h2>
-        </div>
-
-        <div class="projector-act projector-act--6" data-act="5">
-          <h2>Everything. In sync.</h2>
-          <p>Chronotales</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
     </div>
   </section>
-</div>
-<!-- Scene 3 Ends-->
-<!-- Scene 4 Starts-->
-<div class="origin-layer origin-layer--scene-4" id="origin-scene-4-layer">
-  <section class="origin-orbit-scene" id="originOrbitScene" aria-label="Chronotales orbit scene">
-    <div class="origin-orbit__ambient" id="originOrbitAmbient"></div>
 
-    <div class="origin-orbit__frame-wrap">
-      <div class="origin-orbit__frame" id="originOrbitFrame">
-        <div class="origin-orbit__frame-vignette"></div>
-        <div class="origin-orbit__frame-glow"></div>
-
-        <svg class="origin-orbit__connections" id="originOrbitConnections" aria-hidden="true"></svg>
-
-        <div class="origin-orbit__planets" id="originOrbitPlanets" aria-hidden="true"></div>
-        <div class="origin-orbit__realms" id="originOrbitRealms" aria-hidden="true"></div>
-
-        <div class="origin-orbit__core" id="originOrbitCore">
-          <div class="origin-orbit__core-glow origin-orbit__core-glow--outer" id="originOrbitGlowOuter"></div>
-          <div class="origin-orbit__core-glow origin-orbit__core-glow--inner" id="originOrbitGlowInner"></div>
-
-          <img
-            src="./assets/images/logo.webp"
-            id="originOrbitLogo"
-            class="origin-orbit__logo"
-            alt="Chronotales logo"
-          >
-        </div>
-      </div>
+  <section class="ct-cta" id="ctCta">
+    <div class="ct-cta__bg">
+      <div class="ct-cta__glow" id="ctCtaGlow"></div>
+      <div class="ct-cta__grid" id="ctCtaGrid"></div>
+      <div class="ct-cta__orb" id="ctCtaOrb"></div>
     </div>
 
-    <div class="origin-orbit__copydock">
-      <h2 class="origin-orbit__title" id="originOrbitActTitle">One vision.</h2>
-      <p class="origin-orbit__support" id="originOrbitSupport">Everything begins here.</p>
-    </div>
-  </section>
+    <div class="ct-cta__inner">
+      <h2 class="ct-cta__headline" id="ctCtaHeadline">
+        Your brand isn’t the problem.<br>
+        The chaos around it is.
+      </h2>
+
+      <p class="ct-cta__subtext" id="ctCtaSubtext">
+        Fix the system.<br>
+        Everything else follows.
+      </p>
+
+      <div class="ct-cta__actions" id="ctCtaActions">
+  <button
+    type="button"
+    class="ct-btn ct-btn--primary"
+    data-open-enquiry
+  >
+    Fix It Now
+  </button>
+
+  <a
+    href="https://wa.me/919990543100"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="ct-btn ct-btn--ghost"
+  >
+    Let’s Talk
+  </a>
 </div>
-<!-- Scene 4 Ends-->
-
-
-        <div class="origin-cinematic__fade" id="originFade"></div>
-      </div>
     </div>
   </section>
 
   
-
-  <button class="ct-sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Sound off">
-    <span class="ct-sound-toggle__icon">🔇</span>
-  </button>
+  
 </main>
-<!-- Audio Permission Modal -->
-<div class="ct-audio-modal" id="audioPermissionModal" aria-hidden="true">
-  <div class="ct-audio-modal__backdrop" id="audioPermissionBackdrop"></div>
 
-  <div
-    class="ct-audio-modal__dialog"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="audioPermissionTitle"
-    aria-describedby="audioPermissionText"
-  >
-    <h2 class="ct-audio-modal__title" id="audioPermissionTitle">Enable sound?</h2>
-    <p class="ct-audio-modal__text" id="audioPermissionText">
-      This experience includes ambient and scene-based audio.
-    </p>
+<div data-include="footer"></div>
+<div data-include="floating-ui"></div>
+<div data-include="audio-modal"></div>
+<div data-include="enquiry-modal"></div>
 
-    <div class="ct-audio-modal__actions">
-      <button type="button" class="ct-audio-modal__button ct-audio-modal__button--secondary" id="audioPermissionNo">
-        No
-      </button>
-      <button type="button" class="ct-audio-modal__button ct-audio-modal__button--primary" id="audioPermissionYes">
-        Yes
-      </button>
-    </div>
-  </div>
-</div>
-<!-- Audio Permission Modal -->
-<script src="./js/nav.js"></script>
-<script type="module" src="./js/originMain.js"></script>
-<script type="module" src="./js/audio.js"></script>
+
+<script src="./js/core/includes.js"></script>
+
+<script>
+document.addEventListener('chronotales:partials-loaded', () => {
+  const yearNode = document.querySelector('[data-year]');
+  if (yearNode) yearNode.textContent = new Date().getFullYear();
+
+  const scripts = [
+    './js/nav.js',
+    './js/site-ui.js',
+    './js/contact-modal.js'
+  ];
+
+  scripts.forEach((src) => {
+    const s = document.createElement('script');
+    s.src = src;
+    document.body.appendChild(s);
+  });
+
+  const audioScript = document.createElement('script');
+  audioScript.type = 'module';
+  audioScript.src = './js/audio.js';
+  document.body.appendChild(audioScript);
+
+  const originScript = document.createElement('script');
+  originScript.type = 'module';
+  originScript.src = './js/originMain.js';
+  document.body.appendChild(originScript);
+});
+</script>
+
+
 </body>
 </html>

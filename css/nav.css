@@ -646,3 +646,54 @@ body.is-transitioning .ct-nav {
   filter: none;
   opacity: 1;
 }
+
+
+/* =========================
+   cta nav dissolve
+========================= */
+body.origin-post-scenes .ct-nav__desktop {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-12px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+body.origin-post-scenes .ct-nav__bar {
+  justify-content: flex-end;
+}
+
+body.origin-post-scenes .ct-nav__toggle {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+/* Desktop only: hide center logo in CTA/footer mode */
+@media (min-width: 769px) {
+  body.origin-post-scenes .ct-nav__brand {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px) scale(0.82);
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
+  }
+}
+
+/* Mobile/tablet: keep logo visible */
+@media (max-width: 768px) {
+  body.origin-post-scenes .ct-nav__brand {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  body.origin-post-scenes .ct-nav__bar {
+    justify-content: space-between;
+  }
+}
+/* =========================
+   cta nav dissolve end
+========================= */

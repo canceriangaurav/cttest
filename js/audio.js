@@ -71,12 +71,8 @@ export function playSound(audio, volume = null) {
 --------------------------------------- */
 
 function bootAudio() {
-  const soundToggle = document.getElementById('soundToggle');
-  const soundToggleIcon = soundToggle?.querySelector('.ct-sound-toggle__icon');
-
-  const modal = document.getElementById('audioPermissionModal');
-  const modalYes = document.getElementById('audioPermissionYes');
-  const modalNo = document.getElementById('audioPermissionNo');
+  if (window.__chronotalesAudioBooted) return;
+  window.__chronotalesAudioBooted = true;
 
   const state = {
     allowed: false,
@@ -89,7 +85,25 @@ function bootAudio() {
   const scene2Audio = createOriginAudioScene2();
   const scene3Audio = createOriginAudioScene3();
 
+  function getUI() {
+    const soundToggle = document.getElementById('soundToggle');
+    const soundToggleIcon = soundToggle?.querySelector('.ct-sound-toggle__icon');
+
+    const modal = document.getElementById('audioPermissionModal');
+    const modalYes = document.getElementById('audioPermissionYes');
+    const modalNo = document.getElementById('audioPermissionNo');
+
+    return {
+      soundToggle,
+      soundToggleIcon,
+      modal,
+      modalYes,
+      modalNo
+    };
+  }
+
   function updateToggleUI() {
+    const { soundToggle, soundToggleIcon } = getUI();
     if (!soundToggle) return;
 
     soundToggle.setAttribute('aria-pressed', String(state.enabled));
@@ -101,12 +115,14 @@ function bootAudio() {
   }
 
   function showModal() {
+    const { modal } = getUI();
     if (!modal) return;
     modal.classList.add('is-visible');
     modal.setAttribute('aria-hidden', 'false');
   }
 
   function hideModal() {
+    const { modal } = getUI();
     if (!modal) return;
     modal.classList.remove('is-visible');
     modal.setAttribute('aria-hidden', 'true');
@@ -216,6 +232,8 @@ function bootAudio() {
   }
 
   function bindUI() {
+    const { soundToggle, modalYes, modalNo } = getUI();
+
     if (soundToggle && !soundToggle.dataset.audioBound) {
       soundToggle.dataset.audioBound = 'true';
 
@@ -241,6 +259,8 @@ function bootAudio() {
         disableAudio();
       });
     }
+
+    updateToggleUI();
   }
 
   function restorePreference() {
@@ -266,8 +286,8 @@ function bootAudio() {
     showModal();
   }
 
-  bindUI();
   restorePreference();
+  bindUI();
 
   document.addEventListener(
     'pointerenter',
@@ -280,13 +300,14 @@ function bootAudio() {
         target.closest('.ct-planet') ||
         target.closest('.ct-mobile-planet') ||
         target.closest('.ct-social-asteroid') ||
-        target.closest('.ct-audio-modal__button')
+        target.closest('.ct-audio-modal__button') ||
+        target.closest('.realm-node')
       ) {
         playSound(sounds.cardHover);
         return;
       }
 
-      if (target.closest('.ct-btn')) {
+      if (target.closest('.ct-btn') || target.closest('.button')) {
         playSound(sounds.ctaHover);
       }
     },
@@ -303,18 +324,24 @@ function bootAudio() {
       if (
         target.closest('.ct-planet') ||
         target.closest('.ct-mobile-planet') ||
-        target.closest('.ct-social-asteroid')
+        target.closest('.ct-social-asteroid') ||
+        target.closest('.realm-node')
       ) {
         playSound(sounds.ctaClick);
         return;
       }
 
-      if (target.closest('.ct-btn')) {
+      if (target.closest('.ct-btn') || target.closest('.button')) {
         playSound(sounds.ctaClick);
       }
     },
     true
   );
+
+  document.addEventListener('chronotales:partials-loaded', () => {
+    bindUI();
+    updateToggleUI();
+  });
 
   window.__chronotalesAudio = {
     isEnabled() {
@@ -376,7 +403,7 @@ function bootAudio() {
     async unmute() {
       await unmuteAll();
     }
-    };
+  };
 }
 
 if (document.readyState === 'loading') {

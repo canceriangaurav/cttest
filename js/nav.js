@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+function bootNav() {
+  if (window.__chronotalesNavBooted) return;
+
   const body = document.body;
 
   const toggle = document.querySelector('.ct-nav__toggle');
@@ -16,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobilePlanets = document.querySelectorAll('.ct-mobile-planet--page');
   const mobileChildren = document.querySelectorAll('.ct-mobile-child');
   const mobileSocialAsteroids = document.querySelectorAll('.ct-social-asteroid');
+
+  if (!toggle || !mobileMenu) return;
+
+  window.__chronotalesNavBooted = true;
 
   let mobileMenuVideoLoaded = false;
 
@@ -51,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  mobileMenu?.setAttribute('inert', '');
+  mobileMenu.setAttribute('inert', '');
 
   const navigateTo = (url) => {
     if (!url || url === '#') return;
@@ -191,36 +197,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const openMenu = () => {
     body.classList.add('nav-open');
 
-    toggle?.setAttribute('aria-expanded', 'true');
-    toggle?.setAttribute('aria-label', 'Close menu');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
 
-    mobileMenu?.setAttribute('aria-hidden', 'false');
-    mobileMenu?.removeAttribute('inert');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    mobileMenu.removeAttribute('inert');
 
     playMobileMenuVideo();
     mobileClose?.focus();
   };
 
   const closeMenu = () => {
-    if (document.activeElement && mobileMenu?.contains(document.activeElement)) {
+    if (document.activeElement && mobileMenu.contains(document.activeElement)) {
       document.activeElement.blur();
     }
 
     body.classList.remove('nav-open');
 
-    toggle?.setAttribute('aria-expanded', 'false');
-    toggle?.setAttribute('aria-label', 'Open menu');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
 
-    mobileMenu?.setAttribute('aria-hidden', 'true');
-    mobileMenu?.setAttribute('inert', '');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    mobileMenu.setAttribute('inert', '');
 
     clearMobileFocusMode();
     pauseMobileMenuVideo();
 
-    toggle?.focus();
+    toggle.focus();
   };
 
-  toggle?.addEventListener('click', () => {
+  toggle.addEventListener('click', () => {
     const isOpen = body.classList.contains('nav-open');
     if (isOpen) closeMenu();
     else openMenu();
@@ -270,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', (e) => {
       if (link.closest('.ct-mobile-menu')) return;
 
-      // Let desktop parent items with children open first instead of navigating immediately
       const group = link.closest('.ct-planet-group--has-children');
       if (group && !group.classList.contains('is-open')) return;
 
@@ -297,8 +302,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const target = e.target;
 
     if (!body.classList.contains('nav-open')) return;
-    if (mobileMenu?.contains(target) || toggle?.contains(target)) return;
+    if (mobileMenu.contains(target) || toggle.contains(target)) return;
 
     closeMenu();
   });
-});
+}
+
+if (document.readyState === 'complete') {
+  bootNav();
+} else {
+  window.addEventListener('load', bootNav, { once: true });
+}
+
+document.addEventListener('chronotales:partials-loaded', bootNav);

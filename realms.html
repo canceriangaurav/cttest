@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="gold-night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chronotales Realms</title>
+  <meta
+    name="description"
+    content="Explore the four realms of Chronotales through a cinematic orbit interface."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./css/system.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/sections.css" />
+  <link rel="stylesheet" href="./css/motion.css" />
+  <link rel="stylesheet" href="./css/nav.css" />
+  <link rel="stylesheet" href="./css/footer.css" />
+  <link rel="stylesheet" href="./css/audio-modal.css" />
+  <link rel="stylesheet" href="./css/contact-modal.css" />
+  <link rel="stylesheet" href="./css/pages/realms.css" />
+
+  <script src="./js/core/includes.js" defer></script>
+  <script src="./js/nav.js" defer></script>
+  <script src="./js/site-ui.js" defer></script>
+  <script type="module" src="./js/audio.js"></script>
+  <script src="./js/contact-modal.js" defer></script>
+
+  <script src="./js/realms/realms.data.js" defer></script>
+  <script src="./js/realms/realms.dom.js" defer></script>
+  <script src="./js/realms/realms.utils.js" defer></script>
+  <script src="./js/realms/realms.audio.js" defer></script>
+  <script src="./js/realms/realms.popup.js" defer></script>
+  <script src="./js/realms/realms.orbit.js" defer></script>
+  <script src="./js/realms/realms.input.js" defer></script>
+  <script src="./js/realms/realms.master.js" defer></script>
+</head>
+<body class="page-realms">
+  <div class="site-shell">
+    <div class="transition-overlay" aria-hidden="true"></div>
+
+    <div data-include="nav"></div>
+
+    <main class="realms-page" id="realmsPage">
+      <section class="realms-stage" id="realmsStage" aria-label="Chronotales Realms">
+        <div class="realms-stage__bg" aria-hidden="true"></div>
+        <div class="realms-stage__grain" aria-hidden="true"></div>
+        <div class="realms-stage__stars" aria-hidden="true"></div>
+
+        <div class="realms-stage__inner">
+          <header class="realms-intro">
+          
+            <h1 class="realms-intro__title">Choose your orbit.</h1>
+            
+          </header>
+
+          <div class="realms-orbit" id="realmsOrbit" aria-live="polite">
+            <div class="realms-core" id="realmsCore" aria-hidden="true">
+              <div class="realms-core__ring"></div>
+              <div class="realms-core__mark">Chronotales</div>
+            </div>
+
+            <button class="realm-node realm-node--creative" data-realm="creative" type="button">
+              <span class="realm-node__label">Creative</span>
+            </button>
+
+            <button class="realm-node realm-node--digital" data-realm="digital" type="button">
+              <span class="realm-node__label">Digital</span>
+            </button>
+
+            <button class="realm-node realm-node--strategy" data-realm="strategy" type="button">
+              <span class="realm-node__label">Strategy</span>
+            </button>
+
+            <button class="realm-node realm-node--physical" data-realm="physical" type="button">
+              <span class="realm-node__label">Physical</span>
+            </button>
+          </div>
+
+          <div class="realms-hint" id="realmsHint">
+            <span class="realms-hint__desktop">Scroll left or right to orbit. Click a realm to enter.</span>
+            <span class="realms-hint__mobile">Swipe to orbit. Tap a realm to enter.</span>
+          </div>
+        </div>
+
+        <aside class="realm-popup" id="realmPopup" aria-hidden="true">
+          <div class="realm-popup__backdrop" data-popup-close></div>
+
+          <div
+            class="realm-popup__panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="realmPopupTitle"
+          >
+            <button
+              class="realm-popup__close"
+              type="button"
+              aria-label="Close realm popup"
+              data-popup-close
+            >
+              ×
+            </button>
+
+            <div class="realm-popup__eyebrow" id="realmPopupEyebrow">Chronotales Realm</div>
+            <h2 class="realm-popup__title" id="realmPopupTitle"></h2>
+            <p class="realm-popup__text" id="realmPopupText"></p>
+
+            <div class="realm-popup__actions">
+              <a class="button button--primary" id="realmPopupLink" href="#">Enter Realm</a>
+              <button class="button button--secondary" type="button" data-popup-close>
+                Close
+              </button>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <div data-include="footer"></div>
+    <div data-include="floating-ui"></div>
+    <div data-include="audio-modal"></div>
+    <div data-include="enquiry-modal"></div>
+  </div>
+
+
+
+  
+</body>
+</html>

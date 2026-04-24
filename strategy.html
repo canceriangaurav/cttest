@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="gold-night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CHANGE PER PAGE -->
+  <title>Coming Soon | Chronotales</title>
+  <meta name="description" content="This Chronotales page is currently under construction." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/nav.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/audio-modal.css">
+  <link rel="stylesheet" href="./css/contact-modal.css">
+   <link rel="stylesheet" href="./css/components.css">
+
+  <style>
+    :root {
+      --ct-gold: #d4a853;
+      --ct-gold-bright: #f4d36a;
+      --ct-bg: #050506;
+      --ct-text: #f3efe5;
+      --ct-muted: rgba(243,239,229,.68);
+      --ct-line: rgba(212,168,83,.24);
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 25%, rgba(212,168,83,.16), transparent 28%),
+        radial-gradient(circle at 20% 80%, rgba(244,211,106,.08), transparent 26%),
+        #050506;
+      color: var(--ct-text);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    .uc-main {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 120px 20px 80px;
+      isolation: isolate;
+    }
+
+    .uc-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(circle at center, black, transparent 72%);
+      z-index: -2;
+    }
+
+    .uc-orbit {
+      position: absolute;
+      width: min(72vw, 760px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(212,168,83,.12);
+      border-radius: 50%;
+      animation: ucRotate 28s linear infinite;
+      z-index: -1;
+    }
+
+    .uc-orbit::before,
+    .uc-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(212,168,83,.13);
+      inset: 11%;
+      transform: rotate(18deg);
+    }
+
+    .uc-orbit::after {
+      inset: 23%;
+      transform: rotate(-22deg);
+      border-color: rgba(244,211,106,.09);
+    }
+
+    @keyframes ucRotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .uc-card {
+      width: min(100%, 920px);
+      text-align: center;
+      padding: clamp(36px, 6vw, 76px);
+      border: 1px solid var(--ct-line);
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018)),
+        rgba(10,10,12,.78);
+      backdrop-filter: blur(18px);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.035) inset,
+        0 40px 120px rgba(0,0,0,.55),
+        0 0 90px rgba(212,168,83,.08);
+    }
+
+    .uc-eyebrow {
+      margin: 0 0 14px;
+      color: var(--ct-gold-bright);
+      text-transform: uppercase;
+      letter-spacing: .24em;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .uc-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(54px, 10vw, 132px);
+      line-height: .85;
+      letter-spacing: .035em;
+      text-transform: uppercase;
+    }
+
+    .uc-title span {
+      color: var(--ct-gold-bright);
+      text-shadow: 0 0 42px rgba(244,211,106,.25);
+    }
+
+    .uc-text {
+      width: min(100%, 680px);
+      margin: 22px auto 0;
+      color: var(--ct-muted);
+      font-size: clamp(15px, 1.6vw, 18px);
+      line-height: 1.8;
+    }
+
+    .uc-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+
+    .uc-btn {
+      appearance: none;
+      border: 1px solid rgba(212,168,83,.42);
+      border-radius: 999px;
+      padding: 13px 22px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+
+    .uc-btn--primary {
+      background: var(--ct-gold);
+      color: #070707;
+    }
+
+    .uc-btn--ghost {
+      background: rgba(255,255,255,.035);
+      color: var(--ct-text);
+    }
+
+    .uc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(212,168,83,.2);
+    }
+
+    .uc-note {
+      margin-top: 28px;
+      color: rgba(243,239,229,.42);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 640px) {
+      .uc-main { padding: 100px 14px 60px; }
+      .uc-card { border-radius: 20px; }
+      .uc-actions { flex-direction: column; }
+      .uc-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div data-include="nav"></div>
+
+  <main class="uc-main">
+    <div class="uc-orbit" aria-hidden="true"></div>
+
+    <section class="uc-card">
+      <!-- CHANGE THIS BLOCK PER PAGE -->
+      <p class="uc-eyebrow">Chronotales / Strategic Foundation</p>
+<h1 class="uc-title">The Blueprint Is<br><span>Being Drawn</span></h1>
+<p class="uc-text">
+  Business development, legal clarity, training, partnerships, and growth systems are being structured into a stronger foundation.
+</p>
+
+      <div class="uc-actions">
+        <button class="uc-btn uc-btn--primary" type="button" data-open-enquiry>
+          Start a Conversation
+        </button>
+        <a class="uc-btn uc-btn--ghost" href="index.html">Return to Origin</a>
+      </div>
+
+      <p class="uc-note">Beyond Time. Beyond Trends.</p>
+    </section>
+  </main>
+
+  <div data-include="floating-ui"></div>
+  <div data-include="audio-modal"></div>
+  <div data-include="enquiry-modal"></div>
+  <div data-include="footer"></div>
+
+  <script src="./js/core/includes.js"></script>
+  <script src="./js/nav.js"></script>
+  <script src="./js/site-ui.js"></script>
+  <script type="module" src="./js/audio.js"></script>
+
+  <script>
+    document.addEventListener('chronotales:partials-loaded', () => {
+      const modal = document.getElementById('enquiryModal');
+      const openButtons = document.querySelectorAll('[data-open-enquiry]');
+      const closeBtn = document.getElementById('closeEnquiry');
+      const backdrop = modal?.querySelector('.ct-enquiry-modal__backdrop');
+
+      function openEnquiryModal() {
+        if (!modal) return;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeEnquiryModal() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      openButtons.forEach((button) => {
+        button.addEventListener('click', openEnquiryModal);
+      });
+
+      closeBtn?.addEventListener('click', closeEnquiryModal);
+      backdrop?.addEventListener('click', closeEnquiryModal);
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal?.classList.contains('is-open')) {
+          closeEnquiryModal();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

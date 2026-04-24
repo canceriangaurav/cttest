@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="gold-night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronotales — Creative</title>
+  <meta name="description" content="Chronotales creative realm. A cinematic page exploring perception, expression, difference, impact, and invitation.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="./css/nav.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/audio-modal.css">
+  <link rel="stylesheet" href="./css/contact-modal.css">
+  <link rel="stylesheet" href="./css/pages/creative.css">
+</head>
+<body>
+  <div data-include="nav"></div>
+
+  <main class="ct-creative" id="ctCreativePage">
+    <section class="ct-creative-scroll" id="ctCreativeScroll" aria-label="Chronotales Creative Realm">
+      <div class="ct-creative-pin" id="ctCreativePin">
+        <div class="ct-creative-stage" id="ctCreativeStage">
+
+          <div class="ct-creative-ambient" aria-hidden="true">
+            <div class="ct-creative-ambient__stars"></div>
+            <div class="ct-creative-ambient__grain"></div>
+            <div class="ct-creative-ambient__halo"></div>
+            <div class="ct-creative-ambient__scan"></div>
+            <div class="ct-creative-ambient__vignette"></div>
+          </div>
+
+          <div class="ct-creative-scenes" id="ctCreativeScenes">
+            <section class="ct-creative-scene ct-creative-scene--1" id="creativeScene1" data-scene="perception" aria-label="Perception">
+              <div class="ct-creative-scene__bg"></div>
+              <div class="ct-creative-scene__visual ct-perception-visual" aria-hidden="true">
+                <video class="ct-perception-visual__video" src="./assets/videos/creative_scene_1.webm" autoplay muted loop playsinline preload="auto"></video>
+                <div class="ct-perception-visual__overlay"></div>
+                <div class="ct-perception-visual__focus-rings"></div>
+              </div>
+              <div class="ct-creative-scene__content ct-perception-copy ct-creative-copy ct-creative-copy--center">
+                <p class="ct-creative-copy__eyebrow">Creative / Perception</p>
+                <div class="ct-perception-copy__stack">
+                  <p class="ct-perception-copy__line" data-line="1">You don’t see</br> the <span class="is-gold">WORLD</span> as it is.</p>
+                  <p class="ct-perception-copy__line" data-line="2">You <span class="is-gold">FRAME</span> it.</p>
+                  <p class="ct-perception-copy__line" data-line="3"><span class="is-gold">CREATIVELY.</span></p>
+                  <p class="ct-perception-copy__line" data-line="4"><span class="is-gold">STATIC</span> is forgettable.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-creative-scene ct-creative-scene--2" id="creativeScene2" data-scene="expression" aria-label="Expression">
+              <div class="ct-creative-scene__bg"></div>
+              <div class="ct-creative-scene__visual ct-expression" data-mode="film" aria-hidden="true">
+                <div class="ct-expression__layer ct-expression__layer--base"></div>
+                <div class="ct-expression__layer ct-expression__layer--film"></div>
+                <div class="ct-expression__layer ct-expression__layer--vfx"></div>
+                <div class="ct-expression__layer ct-expression__layer--motion"></div>
+
+                <div class="ct-expression__frame-lines">
+                  <span class="ct-expression__frame ct-expression__frame--top"></span>
+                  <span class="ct-expression__frame ct-expression__frame--right"></span>
+                  <span class="ct-expression__frame ct-expression__frame--bottom"></span>
+                  <span class="ct-expression__frame ct-expression__frame--left"></span>
+                </div>
+
+                <div class="ct-expression__orbital">
+                  <span class="ct-expression__ring ct-expression__ring--1"></span>
+                  <span class="ct-expression__ring ct-expression__ring--2"></span>
+                  <span class="ct-expression__ring ct-expression__ring--3"></span>
+                  <span class="ct-expression__particle ct-expression__particle--1"></span>
+                  <span class="ct-expression__particle ct-expression__particle--2"></span>
+                  <span class="ct-expression__particle ct-expression__particle--3"></span>
+                  <span class="ct-expression__particle ct-expression__particle--4"></span>
+                </div>
+
+                <div class="ct-expression__pulse-grid">
+                  <span class="ct-expression__pulse-line"></span>
+                  <span class="ct-expression__pulse-line"></span>
+                  <span class="ct-expression__pulse-line"></span>
+                  <span class="ct-expression__pulse-dot"></span>
+                </div>
+              </div>
+
+              <div class="ct-creative-scene__content ct-expression-copy ct-creative-copy ct-creative-copy--center">
+                <p class="ct-creative-copy__eyebrow">Creative / Expression</p>
+                <div class="ct-expression-copy__mode-labels" aria-hidden="true">
+                  <span class="ct-expression-copy__mode-label is-active" data-label="film">Film</span>
+                  <span class="ct-expression-copy__mode-label" data-label="vfx">Animation / VFX</span>
+                  <span class="ct-expression-copy__mode-label" data-label="motion">Motion Graphics</span>
+                </div>
+
+                <div class="ct-expression-copy__stack">
+                  <article class="ct-expression-copy__block is-active" data-block="film">
+                    <h2 class="ct-creative-copy__title">We don’t just shoot.<br><span class="is-gold">We compose.</span></h2>
+                    <div class="ct-expression-copy__sub">
+                      <span>Frames.</span><span>Light.</span><span>Silence.</span><span>Emotion.</span>
+                    </div>
+                  </article>
+
+                  <article class="ct-expression-copy__block" data-block="vfx">
+                    <h2 class="ct-creative-copy__title">The impossible<br>is just <span class="is-gold">unrendered reality.</span></h2>
+                  </article>
+
+                  <article class="ct-expression-copy__block" data-block="motion">
+                    <h2 class="ct-creative-copy__title">Give your brand<br>a <span class="is-gold">pulse.</span></h2>
+                  </article>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-creative-scene ct-creative-scene--3" id="creativeScene3" data-scene="difference" aria-label="Difference">
+              <div class="ct-creative-scene__bg"></div>
+              <div class="ct-creative-scene__visual ct-difference-visual" aria-hidden="true">
+                <div class="ct-difference-visual__split"></div>
+                <div class="ct-difference-visual__panel ct-difference-visual__panel--old"></div>
+                <div class="ct-difference-visual__panel ct-difference-visual__panel--new"></div>
+                <div class="ct-difference-visual__merge-line"></div>
+              </div>
+
+              <div class="ct-creative-scene__content ct-difference-copy">
+                <div class="ct-difference-copy__grid">
+                  <article class="ct-difference-copy__column ct-difference-copy__column--old">
+                    <p class="ct-creative-copy__eyebrow">Old Way</p>
+                    <div class="ct-difference-copy__stack">
+                      <p>Beautiful film.</p>
+                      <p>4GB file.</p>
+                      <p>10 seconds load.</p>
+                      <p class="is-gold">User gone.</p>
+                    </div>
+                  </article>
+
+                  <article class="ct-difference-copy__column ct-difference-copy__column--new">
+                    <p class="ct-creative-copy__eyebrow">Chronotales Way</p>
+                    <div class="ct-difference-copy__stack">
+                      <p>Shot for the screen.</p>
+                      <p>Built for motion.</p>
+                      <p>Designed for experience.</p>
+                      <p class="is-gold">User Engaged.</p>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="ct-difference-copy__merge">
+                  <h2 class="ct-creative-copy__title">From the set to the server.<br><span class="is-gold">No silos.</span></h2>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-creative-scene ct-creative-scene--4" id="creativeScene4" data-scene="impact" aria-label="Impact">
+              <div class="ct-creative-scene__bg"></div>
+
+              <div class="ct-creative-scene__visual ct-impact-visual" aria-hidden="true">
+                <div class="ct-impact-sequence">
+                  <img id="impactFrame" src="./assets/images/pen/path/pen_00000.png" alt="Drawing animation">
+                </div>
+              </div>
+
+              <div class="ct-creative-scene__content ct-impact-layout">
+                <div class="ct-impact-layout__graphic"></div>
+                <div class="ct-impact-layout__text">
+                  <div class="ct-impact-copy__block is-active" data-block="memory">
+                    <h2 class="ct-creative-copy__title">We don’t create content.<br>We create <span class="is-gold">memory.</span></h2>
+                  </div>
+
+                  <div class="ct-impact-copy__block" data-block="feeling">
+                    <h2 class="ct-creative-copy__title">We don’t design visuals.<br>We design <span class="is-gold">feeling.</span></h2>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="ct-creative-scene ct-creative-scene--5" id="creativeScene5" data-scene="cta" aria-label="Call to Action">
+              <div class="ct-creative-scene__bg"></div>
+              <div class="ct-creative-scene__visual ct-cta-visual" aria-hidden="true">
+                <video class="ct-cta-visual__video" src="./assets/videos/creative_scene_5.webm" autoplay muted loop playsinline preload="auto"></video>
+                <div class="ct-cta-visual__overlay"></div>
+                <div class="ct-cta-visual__beam"></div>
+              </div>
+
+              <div class="ct-creative-scene__content ct-cta-copy ct-creative-copy ct-creative-copy--center">
+                <p class="ct-creative-copy__eyebrow">Creative / Exit</p>
+                <h2 class="ct-creative-copy__title">Ready for Your Close-Up?</h2>
+                <p class="ct-creative-copy__body">Let’s make something that stops the scroll.</p>
+
+                <div class="ct-cta-copy__actions">
+                  <a class="button button--primary" href="#" data-open-showreel data-sound="cta_click">Explore Showreel</a>
+                  <button class="button button--secondary" type="button" data-open-enquiry data-sound="cta_click">Book a Creative Call</button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="ct-creative-ui">
+            <div class="ct-creative-progress">
+              <div class="ct-creative-progress__bar" id="creativeProgressBar"></div>
+            </div>
+            <div class="ct-creative-debug" id="creativeDebug" hidden></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <div data-include="floating-ui"></div>
+  <div data-include="audio-modal"></div>
+  <div data-include="enquiry-modal"></div>
+
+  <script src="./js/core/includes.js"></script>
+
+  <script>
+    document.addEventListener('chronotales:partials-loaded', () => {
+      const yearNode = document.querySelector('[data-year]');
+      if (yearNode) yearNode.textContent = new Date().getFullYear();
+
+      const scripts = [
+        './js/nav.js',
+        './js/site-ui.js',
+        './js/contact-modal.js'
+      ];
+
+      scripts.forEach((src) => {
+        const s = document.createElement('script');
+        s.src = src;
+        document.body.appendChild(s);
+      });
+
+      const audioScript = document.createElement('script');
+      audioScript.type = 'module';
+      audioScript.src = './js/audio.js';
+      document.body.appendChild(audioScript);
+
+      const creativeScript = document.createElement('script');
+      creativeScript.type = 'module';
+      creativeScript.src = './js/creative/creative.master.js';
+      document.body.appendChild(creativeScript);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0b0b0c;
+      }
+    </style>
+  </defs>
+  <g id="Boundary">
+    <path d="M1439,1v898H1V1h1438M1440,0H0v900h1440V0h0Z"/>
+  </g>
+  <rect id="Social_Icons" data-name="Social Icons" class="cls-1" x="404.57" y="123.85" width="634.21" height="248.17"/>
+  <circle id="Pin" class="cls-1" cx="1164.4" cy="465.47" r="115.66"/>
+  <polygon id="Whatsapp" class="cls-1" points="961.68 450 932.06 620.19 1010.19 629.89 1036.23 456.79 961.68 450"/>
+  <polygon id="Enquiry" class="cls-1" points="529.17 395.51 524.06 620.19 883.04 620.19 879.47 392.45 529.17 395.51"/>
+  <path id="Telephone" class="cls-1" d="M237.09,635v-46.47l33.19-14.81,22.98-46.98-66.89,19.91v-56.17s43.91-20.94,103.66-22.47,101.62,15.32,111.83,17.36,12.77,38.81,12.77,38.81l-6.13,12.77-51.06-12.77-12.26,2.55,12.77,24.72,13.28,27.37,15.83,8.17,15.32,22.98,2.55,37.79-205.79,3.06-2.04-15.83Z"/>
+</svg>
